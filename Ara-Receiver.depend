@@ -1,0 +1,244 @@
+# depslib dependency file v1.0
+1428086327 source:c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\source\templates\system_stm32l0xx.c
+	"stm32l0xx.h"
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l0xx.h
+	"stm32l051xx.h"
+	"stm32l052xx.h"
+	"stm32l053xx.h"
+	"stm32l062xx.h"
+	"stm32l063xx.h"
+	"stm32l061xx.h"
+	"stm32l0xx_hal.h"
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l051xx.h
+	"core_cm0plus.h"
+	"system_stm32l0xx.h"
+	<stdint.h>
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\cmsis\include\core_cm0plus.h
+	<stdint.h>
+	<core_cmInstr.h>
+	<core_cmFunc.h>
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\cmsis\include\core_cminstr.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\cmsis\include\core_cmfunc.h
+	<cmsis_iar.h>
+	<cmsis_ccs.h>
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\system_stm32l0xx.h
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l052xx.h
+	"core_cm0plus.h"
+	"system_stm32l0xx.h"
+	<stdint.h>
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l053xx.h
+	"core_cm0plus.h"
+	"system_stm32l0xx.h"
+	<stdint.h>
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l062xx.h
+	"core_cm0plus.h"
+	"system_stm32l0xx.h"
+	<stdint.h>
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l063xx.h
+	"core_cm0plus.h"
+	"system_stm32l0xx.h"
+	<stdint.h>
+
+1428086327 c:\users\alex\desktop\ara-receiver\drivers\cmsis\device\st\stm32l0xx\include\stm32l061xx.h
+	"core_cm0plus.h"
+	"system_stm32l0xx.h"
+	<stdint.h>
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal.h
+	"stm32l0xx_hal_conf.h"
+
+1428223761 c:\users\alex\desktop\ara-receiver\inc\stm32l0xx_hal_conf.h
+	"stm32l0xx_hal_rcc.h"
+	"stm32l0xx_hal_gpio.h"
+	"stm32l0xx_hal_dma.h"
+	"stm32l0xx_hal_cortex.h"
+	"stm32l0xx_hal_adc.h"
+	"stm32l0xx_hal_comp.h"
+	"stm32l0xx_hal_crc.h"
+	"stm32l0xx_hal_cryp.h"
+	"stm32l0xx_hal_dac.h"
+	"stm32l0xx_hal_flash.h"
+	"stm32l0xx_hal_i2c.h"
+	"stm32l0xx_hal_i2s.h"
+	"stm32l0xx_hal_iwdg.h"
+	"stm32l0xx_hal_lcd.h"
+	"stm32l0xx_hal_lptim.h"
+	"stm32l0xx_hal_pwr.h"
+	"stm32l0xx_hal_rng.h"
+	"stm32l0xx_hal_rtc.h"
+	"stm32l0xx_hal_spi.h"
+	"stm32l0xx_hal_tim.h"
+	"stm32l0xx_hal_tsc.h"
+	"stm32l0xx_hal_uart.h"
+	"stm32l0xx_hal_usart.h"
+	"stm32l0xx_hal_irda.h"
+	"stm32l0xx_hal_smartcard.h"
+	"stm32l0xx_hal_smbus.h"
+	"stm32l0xx_hal_wwdg.h"
+	"stm32l0xx_hal_pcd.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_rcc.h
+	"stm32l0xx_hal_def.h"
+	"stm32L0xx_hal_rcc_ex.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_def.h
+	"stm32l0xx.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_rcc_ex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_gpio.h
+	"stm32l0xx_hal_def.h"
+	"stm32l0xx_hal_gpio_ex.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_gpio_ex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_dma.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_cortex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_adc.h
+	"stm32l0xx_hal_def.h"
+	"stm32l0xx_hal_adc_ex.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_adc_ex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_flash.h
+	"stm32l0xx_hal_def.h"
+	"stm32l0xx_hal_flash_ex.h"
+	"stm32l0xx_hal_flash_ramfunc.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_flash_ex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_flash_ramfunc.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_i2c.h
+	"stm32l0xx_hal_def.h"
+	"stm32l0xx_hal_i2c_ex.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_i2c_ex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_pwr.h
+	"stm32l0xx_hal_def.h"
+	"stm32l0xx_hal_pwr_ex.h"
+
+1428086329 c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal_pwr_ex.h
+	"stm32l0xx_hal_def.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_adc.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_adc_ex.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_cortex.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_dma.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_flash.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_flash_ex.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_flash_ramfunc.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_gpio.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_i2c.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_i2c_ex.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_pwr.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_pwr_ex.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_rcc.c
+	"stm32l0xx_hal.h"
+
+1428086329 source:c:\users\alex\desktop\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_rcc_ex.c
+	"stm32l0xx_hal.h"
+
+1428233569 source:c:\users\alex\desktop\ara-receiver\src\gpio.c
+	"gpio.h"
+
+1428233503 c:\users\alex\desktop\ara-receiver\inc\gpio.h
+	"stm32l0xx_hal.h"
+
+1428223761 source:c:\users\alex\desktop\ara-receiver\src\stm32l0xx_hal_msp.c
+	"stm32l0xx_hal.h"
+
+1428223761 source:c:\users\alex\desktop\ara-receiver\src\stm32l0xx_it.c
+	"stm32l0xx_hal.h"
+	"stm32l0xx.h"
+	"stm32l0xx_it.h"
+
+1428223761 c:\users\alex\desktop\ara-receiver\inc\stm32l0xx_it.h
+
+1428223605 source:c:\users\alex\desktop\ara-receiver\startup_stm32l0xx.s
+
+1428234425 source:c:\users\alex\desktop\ara-receiver\src\adc.c
+	"adc.h"
+	"gpio.h"
+
+1428233510 c:\users\alex\desktop\ara-receiver\inc\adc.h
+	"stm32l0xx_hal.h"
+
+1428234437 source:c:\users\alex\desktop\ara-receiver\src\i2c.c
+	"i2c.h"
+	"gpio.h"
+
+1428233659 c:\users\alex\desktop\ara-receiver\inc\i2c.h
+	"stm32l0xx_hal.h"
+
+1428237855 source:c:\users\alex\desktop\ara-receiver\src\main.c
+	"main.h"
+	"adc.h"
+	"i2c.h"
+	"gpio.h"
+	"fifo.h"
+
+1428234756 source:c:\users\alex\desktop\ara-receiver\src\fifo.c
+	<stdint.h>
+	<stddef.h>
+	<string.h>
+	"fifo.h"
+
+1428234756 c:\users\alex\desktop\ara-receiver\inc\fifo.h
+	<stdint.h>
+	<stddef.h>
+
+1428237786 c:\users\alex\desktop\ara-receiver\src\main.h
+	<stdint.h>
+	"stm32l0xx_hal.h"
+
