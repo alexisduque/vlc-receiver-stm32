@@ -1,11 +1,14 @@
 /**
   ******************************************************************************
   * @file    stm32l0xx_hal_conf.h
+  * @author  MCD Application Team
+  * @version V1.1.0
+  * @date    18-June-2014
   * @brief   HAL configuration file.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -30,7 +33,7 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
+  */ 
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32L0xx_HAL_CONF_H
@@ -45,45 +48,46 @@
 
 /* ########################## Module Selection ############################## */
 /**
-  * @brief This is the list of modules to be used in the HAL driver
+  * @brief This is the list of modules to be used in the HAL driver 
   */
-#define HAL_MODULE_ENABLED
-#define HAL_ADC_MODULE_ENABLED
-//#define HAL_COMP_MODULE_ENABLED
-//#define HAL_CRC_MODULE_ENABLED
-//#define HAL_CRYP_MODULE_ENABLED
-//#define HAL_DAC_MODULE_ENABLED
-#define HAL_I2C_MODULE_ENABLED
-//#define HAL_I2S_MODULE_ENABLED
-//#define HAL_IWDG_MODULE_ENABLED
-//#define HAL_LCD_MODULE_ENABLED
-//#define HAL_LPTIM_MODULE_ENABLED
-//#define HAL_RNG_MODULE_ENABLED
-//#define HAL_RTC_MODULE_ENABLED
-#define HAL_SPI_MODULE_ENABLED
-//#define HAL_TIM_MODULE_ENABLED
-//#define HAL_TSC_MODULE_ENABLED
-//#define HAL_UART_MODULE_ENABLED
-//#define HAL_USART_MODULE_ENABLED
-//#define HAL_IRDA_MODULE_ENABLED
-//#define HAL_SMARTCARD_MODULE_ENABLED
-//#define HAL_SMBUS_MODULE_ENABLED
-//#define HAL_WWDG_MODULE_ENABLED
-//#define HAL_PCD_MODULE_ENABLED
-#define HAL_GPIO_MODULE_ENABLED
+#define HAL_MODULE_ENABLED  
+#define HAL_ADC_MODULE_ENABLED   
+#define HAL_COMP_MODULE_ENABLED 
+#define HAL_CRC_MODULE_ENABLED  
+#define HAL_CRYP_MODULE_ENABLED  
+#define HAL_DAC_MODULE_ENABLED   
 #define HAL_DMA_MODULE_ENABLED
-#define HAL_RCC_MODULE_ENABLED
-#define HAL_FLASH_MODULE_ENABLED
-#define HAL_PWR_MODULE_ENABLED
+#define HAL_FLASH_MODULE_ENABLED 
+#define HAL_GPIO_MODULE_ENABLED
+#define HAL_I2C_MODULE_ENABLED
+#define HAL_I2S_MODULE_ENABLED   
+#define HAL_IWDG_MODULE_ENABLED
+#define HAL_LCD_MODULE_ENABLED 
+#define HAL_LPTIM_MODULE_ENABLED
+#define HAL_PWR_MODULE_ENABLED  
+#define HAL_RCC_MODULE_ENABLED 
+#define HAL_RNG_MODULE_ENABLED   
+#define HAL_RTC_MODULE_ENABLED
+#define HAL_SPI_MODULE_ENABLED   
+#define HAL_TIM_MODULE_ENABLED
+#define HAL_TSC_MODULE_ENABLED   
+#define HAL_UART_MODULE_ENABLED 
+#define HAL_USART_MODULE_ENABLED 
+#define HAL_IRDA_MODULE_ENABLED 
+#define HAL_SMARTCARD_MODULE_ENABLED 
+#define HAL_SMBUS_MODULE_ENABLED 
+#define HAL_WWDG_MODULE_ENABLED  
 #define HAL_CORTEX_MODULE_ENABLED
+#define HAL_PCD_MODULE_ENABLED 
+
 
 /* ########################## Oscillator Values adaptation ####################*/
 /**
   * @brief Adjust the value of External High Speed oscillator (HSE) used in your application.
   *        This value is used by the RCC HAL module to compute the system frequency
-  *        (when HSE is used as system clock source, directly or through the PLL).
+  *        (when HSE is used as system clock source, directly or through the PLL).  
   */
-#if !defined  (HSE_VALUE)
+#if !defined  (HSE_VALUE) 
   #define HSE_VALUE    ((uint32_t)8000000) /*!< Value of the External oscillator in Hz */
 #endif /* HSE_VALUE */
 
@@ -96,18 +100,18 @@
   *        This value is the default MSI range value after Reset.
   */
 #if !defined  (MSI_VALUE)
-  #define MSI_VALUE    ((uint32_t)2097000) /*!< Value of the Internal oscillator in Hz*/
+  #define MSI_VALUE    ((uint32_t)2000000) /*!< Value of the Internal oscillator in Hz*/
 #endif /* MSI_VALUE */
-
+   
 /**
   * @brief Internal High Speed oscillator (HSI) value.
   *        This value is used by the RCC HAL module to compute the system frequency
-  *        (when HSI is used as system clock source, directly or through the PLL).
+  *        (when HSI is used as system clock source, directly or through the PLL). 
   */
 #if !defined  (HSI_VALUE)
   #define HSI_VALUE    ((uint32_t)16000000) /*!< Value of the Internal oscillator in Hz*/
 #endif /* HSI_VALUE */
-
+   
 /**
   * @brief External Low Speed oscillator (LSE) value.
   *        This value is used by the UART, RTC HAL module to compute the system frequency
@@ -116,34 +120,36 @@
   #define LSE_VALUE    ((uint32_t)32768) /*!< Value of the External oscillator in Hz*/
 #endif /* LSE_VALUE */
 
+   
 #if !defined  (LSE_STARTUP_TIMEOUT)
-  #define LSE_STARTUP_TIMEOUT  ((uint32_t)5000)   /*!< Time out for LSE start up, in ms */
-#endif /* LSE_STARTUP_TIMEOUT */
+  #define LSE_STARTUP_TIMEOUT    ((uint32_t)5000)   /*!< Time out for LSE start up, in ms */
+#endif /* HSE_STARTUP_TIMEOUT */
 
+   
 /* Tip: To avoid modifying this file each time you need to use different HSE,
    ===  you can define the HSE value in your toolchain compiler preprocessor. */
 
 /* ########################### System Configuration ######################### */
 /**
   * @brief This is the HAL system configuration section
-  */
+  */     
 #define  VDD_VALUE                    ((uint32_t)3300) /*!< Value of VDD in mv */
-#define  TICK_INT_PRIORITY            ((uint32_t)0)    /*!< tick interrupt priority */
-#define  USE_RTOS                     0
-#define  PREFETCH_ENABLE              1
+#define  TICK_INT_PRIORITY            ((uint32_t)3)    /*!< tick interrupt priority */            
+#define  USE_RTOS                     0     
+#define  PREFETCH_ENABLE              1              
 #define  PREREAD_ENABLE               1
-#define  BUFFER_CACHE_DISABLE         1
+#define  BUFFER_CACHE_DISABLE         0
 
 /* ########################## Assert Selection ############################## */
 /**
-  * @brief Uncomment the line below to expanse the "assert_param" macro in the
+  * @brief Uncomment the line below to expanse the "assert_param" macro in the 
   *        HAL drivers code
   */
 /* #define USE_FULL_ASSERT    1 */
 
 /* Includes ------------------------------------------------------------------*/
 /**
-  * @brief Include module's header file
+  * @brief Include module's header file 
   */
 
 #ifdef HAL_RCC_MODULE_ENABLED
@@ -157,7 +163,7 @@
 #ifdef HAL_DMA_MODULE_ENABLED
   #include "stm32l0xx_hal_dma.h"
 #endif /* HAL_DMA_MODULE_ENABLED */
-
+   
 #ifdef HAL_CORTEX_MODULE_ENABLED
   #include "stm32l0xx_hal_cortex.h"
 #endif /* HAL_CORTEX_MODULE_ENABLED */
@@ -169,7 +175,7 @@
 #ifdef HAL_COMP_MODULE_ENABLED
   #include "stm32l0xx_hal_comp.h"
 #endif /* HAL_COMP_MODULE_ENABLED */
-
+   
 #ifdef HAL_CRC_MODULE_ENABLED
   #include "stm32l0xx_hal_crc.h"
 #endif /* HAL_CRC_MODULE_ENABLED */
@@ -185,7 +191,7 @@
 #ifdef HAL_FLASH_MODULE_ENABLED
   #include "stm32l0xx_hal_flash.h"
 #endif /* HAL_FLASH_MODULE_ENABLED */
-
+ 
 #ifdef HAL_I2C_MODULE_ENABLED
  #include "stm32l0xx_hal_i2c.h"
 #endif /* HAL_I2C_MODULE_ENABLED */
@@ -205,7 +211,7 @@
 #ifdef HAL_LPTIM_MODULE_ENABLED
 #include "stm32l0xx_hal_lptim.h"
 #endif /* HAL_LPTIM_MODULE_ENABLED */
-
+   
 #ifdef HAL_PWR_MODULE_ENABLED
  #include "stm32l0xx_hal_pwr.h"
 #endif /* HAL_PWR_MODULE_ENABLED */
@@ -265,7 +271,7 @@
   * @brief  The assert_param macro is used for function's parameters check.
   * @param  expr: If expr is false, it calls assert_failed function
   *         which reports the name of the source file and the source
-  *         line number of the call that failed.
+  *         line number of the call that failed. 
   *         If expr is true, it returns no value.
   * @retval None
   */
@@ -281,6 +287,6 @@
 #endif
 
 #endif /* __STM32L0xx_HAL_CONF_H */
-
+ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -16,8 +16,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l0xx_hal.h"
+#include "gpio.h"
+#include "main.h"
 
-extern ADC_HandleTypeDef hadc;
+extern ADC_HandleTypeDef AdcHandle;
 
 void MX_ADC_Init(void);
 uint32_t ARA_ADC_GetValue(void);

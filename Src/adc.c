@@ -9,9 +9,14 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "adc.h"
-#include "gpio.h"
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef AdcHandle;
 
-ADC_HandleTypeDef hadc;
+/* Private function prototypes -----------------------------------------------*/
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle);
 
 /* ADC init function */
 void MX_ADC_Init(void)
@@ -20,39 +25,44 @@ void MX_ADC_Init(void)
 
     /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion)
     */
-    hadc.Instance = ADC1;
-    hadc.Init.OversamplingMode = DISABLE;
-    hadc.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
-    hadc.Init.Resolution = ADC_RESOLUTION10b;
-    hadc.Init.SamplingTime = ADC_SAMPLETIME_13CYCLES_5;
-    hadc.Init.ScanDirection = ADC_SCAN_DIRECTION_UPWARD;
-    hadc.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-    hadc.Init.ContinuousConvMode = ENABLE;
-    hadc.Init.DiscontinuousConvMode = DISABLE;
-    hadc.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIG_EDGE_NONE;
-    hadc.Init.DMAContinuousRequests = DISABLE;
-    hadc.Init.EOCSelection = EOC_SINGLE_CONV;
-    hadc.Init.Overrun = OVR_DATA_PRESERVED;
-    hadc.Init.LowPowerAutoWait = DISABLE;
-    hadc.Init.LowPowerFrequencyMode = DISABLE;
-    hadc.Init.LowPowerAutoOff = DISABLE;
-    HAL_ADC_Init(&hadc);
+    AdcHandle.Instance = ADC1;
+    AdcHandle.Init.OversamplingMode = DISABLE;
+    AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
+    AdcHandle.Init.Resolution = ADC_RESOLUTION10b;
+    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_13CYCLES_5;
+    AdcHandle.Init.ScanDirection = ADC_SCAN_DIRECTION_UPWARD;
+    AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+    AdcHandle.Init.ContinuousConvMode = ENABLE;
+    AdcHandle.Init.DiscontinuousConvMode = DISABLE;
+    AdcHandle.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIG_EDGE_NONE;
+    AdcHandle.Init.DMAContinuousRequests = DISABLE;
+    AdcHandle.Init.EOCSelection = EOC_SINGLE_CONV;
+    AdcHandle.Init.Overrun = OVR_DATA_PRESERVED;
+    AdcHandle.Init.LowPowerAutoWait = DISABLE;
+    AdcHandle.Init.LowPowerFrequencyMode = DISABLE;
+    AdcHandle.Init.LowPowerAutoOff = DISABLE;
+    HAL_ADC_Init(&AdcHandle);
 
     /** Start ADC Calibration
     */
-    HAL_ADCEx_Calibration_Start(&hadc, ADC_SINGLE_ENDED);
+    HAL_ADCEx_Calibration_Start(&AdcHandle, ADC_SINGLE_ENDED);
     /**Configure for the selected ADC regular channel to be converted.
     */
     sConfig.Channel = ADC_CHANNEL_0;
-    HAL_ADC_ConfigChannel(&hadc, &sConfig);
+    HAL_ADC_ConfigChannel(&AdcHandle, &sConfig);
+
+    if (HAL_ADC_Start_IT(&AdcHandle) != HAL_OK)
+    {
+        Error_Handler();
+    }
 
 }
 
-void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
+void HAL_ADC_MspInit(ADC_HandleTypeDef* AdcHandle)
 {
 
     GPIO_InitTypeDef GPIO_InitStruct;
-    if(hadc->Instance==ADC1)
+    if(AdcHandle->Instance==ADC1)
     {
 
         /* Peripheral clock enable */
@@ -65,14 +75,13 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
         GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
         GPIO_InitStruct.Pull = GPIO_NOPULL;
         HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
     }
 }
 
-void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
+void HAL_ADC_MspDeInit(ADC_HandleTypeDef* AdcHandle)
 {
 
-    if(hadc->Instance==ADC1)
+    if(AdcHandle->Instance==ADC1)
     {
         /* Peripheral clock disable */
         __ADC1_CLK_DISABLE();
@@ -88,24 +97,23 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 uint32_t ARA_ADC_GetValue(void)
 {
     /* Start the conversion process */
-    if(HAL_ADC_Start(&hadc) != HAL_OK)
+    if(HAL_ADC_Start(&AdcHandle) != HAL_OK)
     {
         /* Start Conversation Error */
         //Error_Handler();
     }
 
     /* Wait for the end of conversion */
-    HAL_ADC_PollForConversion(&hadc, 10);
+    HAL_ADC_PollForConversion(&AdcHandle, 10);
 
     /* Check if the continuous conversion of regular channel is finished */
-    if(HAL_ADC_GetState(&hadc) == HAL_ADC_STATE_EOC)
+    if(HAL_ADC_GetState(&AdcHandle) == HAL_ADC_STATE_EOC)
     {
         /* Get the converted value of regular channel */
-        return HAL_ADC_GetValue(&hadc);
+        return HAL_ADC_GetValue(&AdcHandle);
     }
     return 0;
 }
-
 /**
   * @}
   */

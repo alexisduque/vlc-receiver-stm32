@@ -1,11 +1,14 @@
 /**
   ******************************************************************************
-  * @file    stm32l0xx_it.c
-  * @date    07/04/2015 17:10:46
-  * @brief   Interrupt Service Routines.
+  * @file    stm32l0xx_hal_pcd.h
+  * @author  MCD Application Team
+  * @version V1.1.0
+  * @date    18-June-2014
+  * @brief   Header file of PCD HAL module.
   ******************************************************************************
+  * @attention
   *
-  * COPYRIGHT(c) 2015 STMicroelectronics
+  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -30,48 +33,50 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
+  */ 
+
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM32L0xx_HAL_PCD_EX_H
+#define __STM32L0xx_HAL_PCD_EX_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 /* Includes ------------------------------------------------------------------*/
-#include "stm32l0xx_hal.h"
-#include "stm32l0xx.h"
-#include "stm32l0xx_it.h"
+#include "stm32l0xx_hal_def.h"  
+   
+/** @addtogroup STM32L0xx_HAL_Driver
+  * @{
+  */
 
-/* USER CODE BEGIN 0 */
+/** @addtogroup PCDEx
+  * @{
+  */ 
 
-/* USER CODE END 0 */
-
-/* External variables --------------------------------------------------------*/
-extern I2C_HandleTypeDef I2CxHandle;
-
-/******************************************************************************/
-/*            Cortex-M0+ Processor Interruption and Exception Handlers         */
-/******************************************************************************/
-
-/**
-* @brief This function handles System tick timer.
-*/
-void SysTick_Handler(void)
-{
-  HAL_IncTick();
-}
-
-/******************************************************************************/
-/* STM32L0xx Peripheral Interrupt Handlers                                    */
-/* Add here the Interrupt Handlers for the used peripherals.                  */
-/* For the available peripheral interrupt handler names,                      */
-/* please refer to the startup file (startup_stm32l0xx.s).                    */
-/******************************************************************************/
+/* Exported types ------------------------------------------------------------*/
+/* Exported constants --------------------------------------------------------*/
+/* Exported macros -----------------------------------------------------------*/
+/* Internal macros -----------------------------------------------------------*/
+/* Exported functions --------------------------------------------------------*/
+HAL_StatusTypeDef HAL_PCDEx_PMAConfig(PCD_HandleTypeDef *hpcd, 
+                                     uint16_t ep_addr,
+                                     uint16_t ep_kind,
+                                     uint32_t pmaadress);
 
 /**
-* @brief This function handles I2C1 global interrupt (combined with EXTI line 23 interrupt).
-*/
-void I2C1_IRQHandler(void)
-{
-  HAL_I2C_EV_IRQHandler(&I2CxHandle);
-  HAL_I2C_ER_IRQHandler(&I2CxHandle);
+  * @}
+  */ 
+
+/**
+  * @}
+  */ 
+
+#ifdef __cplusplus
 }
+#endif
 
-/* USER CODE BEGIN 1 */
 
-/* USER CODE END 1 */
+#endif /* __STM32L0xx_HAL_PCD_EX_H */
+
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

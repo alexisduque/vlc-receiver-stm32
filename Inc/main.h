@@ -15,13 +15,18 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include "stm32l0xx_hal.h"
+#include "stm32l0xx_nucleo.h"
+#include "fifo.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
 #define BUFFER_SIZE             2000
 /* Exported functions ------------------------------------------------------- */
+void Error_Handler(void);
 
+extern FIFO_t AdcFIFO;
+extern uint8_t AdcBuffer[BUFFER_SIZE];
 #endif /* __MAIN_H */
 
 /*****************************END OF FILE**************************************/

@@ -16,11 +16,11 @@
 #include "fifo.h"
 
 /* Private typedef -----------------------------------------------------------*/
-static FIFO_t AdcFIFO;
-static uint8_t AdcBuffer[BUFFER_SIZE];
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+FIFO_t AdcFIFO;
+uint8_t AdcBuffer[BUFFER_SIZE];
 uint32_t ADCVoltageValue = 0;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -32,16 +32,17 @@ int main(void)
 
     /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
     HAL_Init();
-
+    /* Init LED2 */
+    BSP_LED_Init(LED2);
     /* Configure the system clock */
     SystemClock_Config();
 
     /* Initialize all configured peripherals */
-
+    FIFO_init(&AdcFIFO, AdcBuffer, BUFFER_SIZE);
     MX_GPIO_Init();
     MX_ADC_Init();
     MX_I2C1_Init();
-    FIFO_init(&AdcFIFO, AdcBuffer, BUFFER_SIZE);
+    ARA_I2C_Listen();
 
     /* Infinite loop */
     while(1)
@@ -86,6 +87,19 @@ void SystemClock_Config(void)
 
 }
 
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @param  None
+  * @retval None
+  */
+void Error_Handler(void)
+{
+    /* Turn On LED2 */
+    BSP_LED_On(LED2);
+    while(1)
+    {
+    }
+}
 
 #ifdef USE_FULL_ASSERT
 

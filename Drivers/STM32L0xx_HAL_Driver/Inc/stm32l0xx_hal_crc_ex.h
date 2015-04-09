@@ -1,11 +1,14 @@
 /**
   ******************************************************************************
-  * @file    stm32l0xx_it.c
-  * @date    07/04/2015 17:10:46
-  * @brief   Interrupt Service Routines.
+  * @file    stm32l0xx_hal_crc_ex.h
+  * @author  MCD Application Team
+  * @version V1.1.0
+  * @date    18-June-2014
+  * @brief   Header file of CRC HAL module.
   ******************************************************************************
+  * @attention
   *
-  * COPYRIGHT(c) 2015 STMicroelectronics
+  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -30,48 +33,72 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
+  */ 
+
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef __STM32L0xx_HAL_CRC_EX_H
+#define __STM32L0xx_HAL_CRC_EX_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 /* Includes ------------------------------------------------------------------*/
-#include "stm32l0xx_hal.h"
-#include "stm32l0xx.h"
-#include "stm32l0xx_it.h"
+#include "stm32l0xx_hal_def.h"
 
-/* USER CODE BEGIN 0 */
+/** @addtogroup STM32L0xx_HAL_Driver
+  * @{
+  */
 
-/* USER CODE END 0 */
+/** @addtogroup CRCEx
+  * @{
+  */ 
 
-/* External variables --------------------------------------------------------*/
-extern I2C_HandleTypeDef I2CxHandle;
+/* Exported types ------------------------------------------------------------*/ 
+/* Exported constants --------------------------------------------------------*/
+/* Exported macro ------------------------------------------------------------*/
 
-/******************************************************************************/
-/*            Cortex-M0+ Processor Interruption and Exception Handlers         */
-/******************************************************************************/
+/** @defgroup CRCEx_Extended_Exported_Macro
+  * @{
+  */
 
-/**
-* @brief This function handles System tick timer.
-*/
-void SysTick_Handler(void)
-{
-  HAL_IncTick();
-}
-
-/******************************************************************************/
-/* STM32L0xx Peripheral Interrupt Handlers                                    */
-/* Add here the Interrupt Handlers for the used peripherals.                  */
-/* For the available peripheral interrupt handler names,                      */
-/* please refer to the startup file (startup_stm32l0xx.s).                    */
-/******************************************************************************/
 
 /**
-* @brief This function handles I2C1 global interrupt (combined with EXTI line 23 interrupt).
-*/
-void I2C1_IRQHandler(void)
-{
-  HAL_I2C_EV_IRQHandler(&I2CxHandle);
-  HAL_I2C_ER_IRQHandler(&I2CxHandle);
+  * @brief  Set CRC non-default polynomial
+  * @param  __HANDLE__    : CRC handle
+  * @param  __POLYNOMIAL__: 7, 8, 16 or 32-bit polynomial  
+  * @retval None.
+  */
+#define __HAL_CRC_POLYNOMIAL_CONFIG(__HANDLE__, __POLYNOMIAL__) ((__HANDLE__)->Instance->POL = (__POLYNOMIAL__))
+    
+    
+/**
+  * @}
+  */
+
+/* Exported functions --------------------------------------------------------*/
+
+/* Initialization and de-initialization functions  ****************************/
+HAL_StatusTypeDef HAL_CRCEx_Polynomial_Set(CRC_HandleTypeDef *hcrc, uint32_t Pol, uint32_t PolyLength);
+HAL_StatusTypeDef HAL_CRC_Input_Data_Reverse(CRC_HandleTypeDef *hcrc, uint32_t InputReverseMode);
+HAL_StatusTypeDef HAL_CRC_Output_Data_Reverse(CRC_HandleTypeDef *hcrc, uint32_t OutputReverseMode);
+
+/* Peripheral Control functions ***********************************************/
+/* Peripheral State and Error functions ***************************************/
+
+
+/**
+  * @}
+  */ 
+
+/**
+  * @}
+  */
+  
+#ifdef __cplusplus
 }
+#endif
 
-/* USER CODE BEGIN 1 */
+#endif /* __STM32L0xx_HAL_CRC_EX_H */
 
-/* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
