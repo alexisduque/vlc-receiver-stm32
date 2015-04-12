@@ -1,5 +1,5 @@
 #MicroXplorer Configuration settings - do not modify
-#Thu Apr 09 13:05:17 CEST 2015
+#Sat Apr 11 17:51:26 CEST 2015
 ADC.ClockPrescaler=ADC_CLOCKPRESCALER_PCLK_DIV2
 ADC.ContinuousConvMode=ENABLE
 ADC.IPParameters=ContinuousConvMode,ClockPrescaler,Resolution,SamplingTime
@@ -10,10 +10,9 @@ I2C1.GeneralCallMode=I2C_GENERALCALL_DISABLED
 I2C1.I2C_Fall_Time=100
 I2C1.I2C_Rise_Time=250
 I2C1.I2C_Speed_Mode=I2C_Fast
-I2C1.IPParameters=I2C_Speed_Mode,OwnAddress,I2C_Rise_Time,NoStretchMode,Timing,GeneralCallMode,I2C_Fall_Time
+I2C1.IPParameters=I2C_Speed_Mode,OwnAddress,I2C_Rise_Time,NoStretchMode,GeneralCallMode,I2C_Fall_Time
 I2C1.NoStretchMode=I2C_NOSTRETCH_DISABLED
 I2C1.OwnAddress=07
-I2C1.Timing=0x00500615
 KeepUserPlacement=true
 Mcu.Family=STM32L0
 Mcu.IP0=ADC
@@ -145,7 +144,7 @@ RCC.HSI16_VALUE=16000000
 RCC.HSI48_VALUE=48000000
 RCC.HSI_VALUE=16000000
 RCC.I2C1Freq_Value=16000000
-RCC.IPParameters=LSI_VALUE,APB1TimFreq_Value,APB2Freq_Value,HSI16_VALUE,FCLKCortexFreq_Value,LSEState,TIMFreq_Value,AHBFreq_Value,MCOPinFreq_Value,SYSCLKFreq_VALUE,USART1Freq_Value,SYSCLKSource,LSE_VALUE,HSE_VALUE,HSI_VALUE,LPTIMFreq_Value,PLLCLKFreq_Value,48CLKFreq_Value,MSI_VALUE,HSI48_VALUE,RTCFreq_Value,VDD_VALUE,FamilyName,PWRFreq_Value,USART2Freq_Value,HCLKFreq_Value,WatchDogFreq_Value,VCOOutputFreq_Value,I2C1Freq_Value,APB1Freq_Value,RTCHSEDivFreq_Value,TimerFreq_Value,LPUARTFreq_Value,LCDFreq_Value,APB2TimFreq_Value
+RCC.IPParameters=LSI_VALUE,APB1TimFreq_Value,APB2Freq_Value,HSI16_VALUE,FCLKCortexFreq_Value,LSEState,AHBFreq_Value,TIMFreq_Value,MCOPinFreq_Value,SYSCLKFreq_VALUE,USART1Freq_Value,SYSCLKSource,LSE_VALUE,HSE_VALUE,HSI_VALUE,LPTIMFreq_Value,PLLCLKFreq_Value,MSI_VALUE,48CLKFreq_Value,HSI48_VALUE,VDD_VALUE,RTCFreq_Value,FamilyName,PWRFreq_Value,USART2Freq_Value,HCLKFreq_Value,WatchDogFreq_Value,VCOOutputFreq_Value,I2C1Freq_Value,APB1Freq_Value,RTCHSEDivFreq_Value,TimerFreq_Value,LPUARTFreq_Value,LCDFreq_Value,APB2TimFreq_Value
 RCC.LCDFreq_Value=37000
 RCC.LPTIMFreq_Value=16000000
 RCC.LPUARTFreq_Value=16000000

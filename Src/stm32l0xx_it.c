@@ -52,7 +52,7 @@ extern I2C_HandleTypeDef I2CxHandle;
 */
 void SysTick_Handler(void)
 {
-  HAL_IncTick();
+    HAL_IncTick();
 }
 
 /******************************************************************************/
@@ -67,8 +67,11 @@ void SysTick_Handler(void)
 */
 void I2C1_IRQHandler(void)
 {
-  HAL_I2C_EV_IRQHandler(&I2CxHandle);
-  HAL_I2C_ER_IRQHandler(&I2CxHandle);
+    HAL_NVIC_ClearPendingIRQ(I2C1_IRQn);
+    HAL_I2C_EV_IRQHandler(&I2CxHandle);
+    HAL_I2C_ER_IRQHandler(&I2CxHandle);
+
+    //GS_HAL_I2C_EV_IRQHandler(&I2CxHandle);
 }
 
 /* USER CODE BEGIN 1 */

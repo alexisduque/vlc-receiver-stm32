@@ -14,19 +14,25 @@
 /* Private macro -------------------------------------------------------------*/
 #define I2C_ADDRESS             0x50
 #define MASTER_REQ_READ         0x01
-#define MASTER_REQ_WRITE        0x03
+#define MASTER_REQ_WRITE        0x02
+#define MASTER_REQ_STOP         0x03
 #define I2C_TIMING_100KHZ       0x00A03D53
 #define I2C_TIMING_400KHZ       0x00500615
+#define SLAVE_TX_ENABLED        0x01
+#define SLAVE_TX_DISABLED       0x00
 
 /* Private variables ---------------------------------------------------------*/
+uint8_t slaveTxEnabled = SLAVE_TX_DISABLED;
 /* I2C handler declaration */
 I2C_HandleTypeDef I2CxHandle;
 
 /* Buffer used for transmission */
-uint8_t aTxBuffer[BUFFER_SIZE];
-
+uint8_t aTxBuffer[TXBUFFERSIZE];
+//uint8_t aTxBuffer = 8;
+uint16_t aTxSize = TXBUFFERSIZE;
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
+uint16_t aRxSize = RXBUFFERSIZE;
 uint16_t fifo_size = 0;
 uint8_t bTransferRequest = 0;
 HAL_StatusTypeDef read = 0;
@@ -78,7 +84,7 @@ void MX_I2C1_Init(void)
     /**Configure Analogue filter
     */
     HAL_I2CEx_AnalogFilter_Config(&I2CxHandle, I2C_ANALOGFILTER_ENABLED);
-
+    Flush_Buffer((uint8_t*)aTxBuffer, aTxSize);
 }
 
 void HAL_I2C_MspInit(I2C_HandleTypeDef *I2CxHandle)
@@ -94,7 +100,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef *I2CxHandle)
   * @param hi2c: I2C handle pointer
   * @retval None
   */
-void HAL_I2C_MspDeInit(I2C_HandleTypeDef *hi2c)
+void HAL_I2C_MspDeInit(I2C_HandleTypeDef *I2CxHandle)
 {
     I2Cx_FORCE_RESET();
     I2Cx_RELEASE_RESET();
@@ -108,34 +114,36 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef *hi2c)
 
 void ARA_I2C_Listen(void)
 {
-    HAL_I2C_Slave_Receive_IT(&I2CxHandle, (uint8_t *)aRxBuffer, 1);
+    if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
+                slaveTxEnabled == SLAVE_TX_DISABLED)
+    {
+        HAL_I2C_Slave_Receive_IT(&I2CxHandle, (uint8_t*)aRxBuffer, aRxSize);
+    } else if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
+                slaveTxEnabled == SLAVE_TX_ENABLED)
+    {
+        HAL_I2C_Slave_Transmit_IT(&I2CxHandle, (uint8_t*)aTxBuffer, aTxSize);
+    }
+
 }
 
+void HAL_I2C_SlaveTxCpltCallback (I2C_HandleTypeDef *I2CxHandle)
+{
+    Flush_Buffer((uint8_t*)aTxBuffer, aTxSize);
+    FIFO_read(&AdcFIFO, &aTxBuffer, aTxSize);
+}
 
 void HAL_I2C_SlaveRxCpltCallback (I2C_HandleTypeDef *I2CxHandle)
 {
-
-    if(aRxBuffer[0] == MASTER_REQ_WRITE)
+    if(aRxBuffer[0] == MASTER_REQ_READ)
     {
-
-        while(HAL_I2C_GetState(I2CxHandle) != HAL_I2C_STATE_READY)
-        {
-        }
-
-        Flush_Buffer((uint8_t*)aRxBuffer,RXBUFFERSIZE);
-        fifo_size = FIFO_read_max(&AdcFIFO, aTxBuffer, BUFFER_SIZE);
-        if(HAL_I2C_Slave_Transmit(I2CxHandle, (uint8_t *)fifo_size, 2, 1000) != HAL_OK)
-        {
-            //Error_Handler();
-        }
-        if(HAL_I2C_Slave_Transmit(I2CxHandle, (uint8_t *)aTxBuffer, fifo_size, 1000) != HAL_OK)
-        {
-            //Error_Handler();
-        }
-        Flush_Buffer((uint8_t*)aTxBuffer,BUFFER_SIZE);
-
+        slaveTxEnabled = SLAVE_TX_ENABLED;
+    }
+    else if(aRxBuffer[0] == MASTER_REQ_STOP)
+    {
+        slaveTxEnabled = SLAVE_TX_DISABLED;
     }
 }
+    //Flush_Buffer((uint8_t*)aRxBuffer, aRxSize);
 
 /**
   * @brief  Flushes the buffer
@@ -160,12 +168,14 @@ static void Flush_Buffer(uint8_t* pBuffer, uint16_t BufferLength)
   *         add your own implementation.
   * @retval None
   */
-void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2cHandle)
+void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2CxHandle)
 {
     /* Turn On LED2 */
-    BSP_LED_On(LED2);
-    while(1)
+    if (HAL_I2C_GetError(I2CxHandle) != HAL_I2C_ERROR_AF)
     {
+        Error_Handler();
+    } else {
+        slaveTxEnabled = SLAVE_TX_DISABLED;
     }
 }
 

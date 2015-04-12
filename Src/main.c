@@ -42,11 +42,11 @@ int main(void)
     MX_GPIO_Init();
     MX_ADC_Init();
     MX_I2C1_Init();
-    ARA_I2C_Listen();
 
     /* Infinite loop */
     while(1)
     {
+        ARA_I2C_Listen();
         ADCVoltageValue = ARA_ADC_GetValue();
         FIFO_write_trample(&AdcFIFO, &ADCVoltageValue, 1);
     }
@@ -96,9 +96,6 @@ void Error_Handler(void)
 {
     /* Turn On LED2 */
     BSP_LED_On(LED2);
-    while(1)
-    {
-    }
 }
 
 #ifdef USE_FULL_ASSERT

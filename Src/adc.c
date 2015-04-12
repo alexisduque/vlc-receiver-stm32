@@ -51,11 +51,6 @@ void MX_ADC_Init(void)
     sConfig.Channel = ADC_CHANNEL_0;
     HAL_ADC_ConfigChannel(&AdcHandle, &sConfig);
 
-    if (HAL_ADC_Start_IT(&AdcHandle) != HAL_OK)
-    {
-        Error_Handler();
-    }
-
 }
 
 void HAL_ADC_MspInit(ADC_HandleTypeDef* AdcHandle)
@@ -110,7 +105,7 @@ uint32_t ARA_ADC_GetValue(void)
     if(HAL_ADC_GetState(&AdcHandle) == HAL_ADC_STATE_EOC)
     {
         /* Get the converted value of regular channel */
-        return HAL_ADC_GetValue(&AdcHandle);
+        return 3330*HAL_ADC_GetValue(&AdcHandle)/4095;
     }
     return 0;
 }

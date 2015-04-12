@@ -103,15 +103,9 @@
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_adc.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_adc_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_comp.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_cortex.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_crc.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_crc_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_cryp.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_cryp_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_dac.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_dac_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_def.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_dma.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_flash.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_flash_ex.h" />
@@ -120,33 +114,11 @@
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_gpio_ex.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_i2c.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_i2c_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_i2s.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_irda.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_irda_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_iwdg.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_lcd.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_lptim.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_pcd.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_pcd_ex.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_pwr.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_pwr_ex.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_rcc.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_rcc_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_rng.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_rtc.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_rtc_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_smartcard.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_smartcard_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_smbus.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_spi.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_tim.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_tim_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_tsc.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_uart.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_uart_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_usart.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_usart_ex.h" />
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_wwdg.h" />
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -156,28 +128,7 @@
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_adc_ex.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_comp.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cortex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_crc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_crc_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cryp.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_cryp_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_dac.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_dac_ex.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_dma.c">
@@ -201,27 +152,6 @@
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c_ex.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2s.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_irda.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_iwdg.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_lcd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_lptim.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_pcd.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_pcd_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_pwr.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -234,46 +164,7 @@
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rcc_ex.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rng.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rtc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_rtc_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_smartcard.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_smartcard_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_smbus.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_spi.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tim.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tim_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_tsc.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart_ex.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_usart.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_wwdg.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Inc\adc.h" />
@@ -319,7 +210,7 @@
 			</DoxyBlocks>
 			<code_completion />
 			<debugger>
-				<target_debugging_settings target="Release" active_interface="ST-link">
+				<target_debugging_settings target="Debug" active_interface="ST-link">
 					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBLOCKS}\share\contrib" executable="STLinkGDB.exe" description="" dont_start_server="false" backoff_time="1000" options="0" reg_filter="0" active_family="STMicroelectronics">
 						<family_options family_id="STMicroelectronics">
 							<option opt_id="ID_JTAG_SWD" opt_value="swd" />
@@ -336,7 +227,7 @@
 						</family_options>
 					</debug_interface>
 				</target_debugging_settings>
-				<target_debugging_settings target="Debug" active_interface="ST-link">
+				<target_debugging_settings target="Release" active_interface="ST-link">
 					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBLOCKS}\share\contrib" executable="STLinkGDB.exe" description="" dont_start_server="false" backoff_time="1000" options="0" reg_filter="0" active_family="STMicroelectronics">
 						<family_options family_id="STMicroelectronics">
 							<option opt_id="ID_JTAG_SWD" opt_value="swd" />

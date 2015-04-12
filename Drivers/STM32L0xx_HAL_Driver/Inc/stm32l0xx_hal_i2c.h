@@ -33,7 +33,7 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32L0xx_HAL_I2C_H
@@ -44,7 +44,7 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32l0xx_hal_def.h"  
+#include "stm32l0xx_hal_def.h"
 
 /** @addtogroup STM32L0xx_HAL_Driver
   * @{
@@ -52,17 +52,17 @@
 
 /** @addtogroup I2C
   * @{
-  */ 
+  */
 
-/* Exported types ------------------------------------------------------------*/ 
+/* Exported types ------------------------------------------------------------*/
 
-/** 
-  * @brief  I2C Configuration Structure definition  
+/**
+  * @brief  I2C Configuration Structure definition
   */
 typedef struct
 {
   uint32_t Timing;              /*!< Specifies the I2C_TIMINGR_register value.
-                                  This parameter calculated by referring to I2C initialization 
+                                  This parameter calculated by referring to I2C initialization
                                          section in Reference manual */
 
   uint32_t OwnAddress1;         /*!< Specifies the first device own address.
@@ -88,9 +88,9 @@ typedef struct
 
 }I2C_InitTypeDef;
 
-/** 
-  * @brief  HAL State structures definition  
-  */ 
+/**
+  * @brief  HAL State structures definition
+  */
 typedef enum
 {
   HAL_I2C_STATE_RESET           = 0x00,  /*!< I2C not yet initialized or disabled         */
@@ -103,12 +103,13 @@ typedef enum
   HAL_I2C_STATE_MEM_BUSY_TX     = 0x52,  /*!< Memory Data Transmission process is ongoing */
   HAL_I2C_STATE_MEM_BUSY_RX     = 0x62,  /*!< Memory Data Reception process is ongoing    */
   HAL_I2C_STATE_TIMEOUT         = 0x03,  /*!< Timeout state                               */
-  HAL_I2C_STATE_ERROR           = 0x04   /*!< Reception process is ongoing                */
+  HAL_I2C_STATE_ERROR           = 0x04,    /*!< Reception process is ongoing                */
+  HAL_I2C_STATE_SLAVE_MODE       = 0x72   /*!< I2c set to SLAVE mode      added by AW       */
 }HAL_I2C_StateTypeDef;
 
-/** 
-  * @brief  HAL I2C Error Code structure definition  
-  */ 
+/**
+  * @brief  HAL I2C Error Code structure definition
+  */
 typedef enum
 {
   HAL_I2C_ERROR_NONE      = 0x00,    /*!< No error              */
@@ -121,8 +122,8 @@ typedef enum
   HAL_I2C_ERROR_SIZE      = 0x40     /*!< Size Management error */
 }HAL_I2C_ErrorTypeDef;
 
-/** 
-  * @brief  I2C handle Structure definition  
+/**
+  * @brief  I2C handle Structure definition
   */
 typedef struct
 {
@@ -145,6 +146,14 @@ typedef struct
   __IO HAL_I2C_StateTypeDef  State;      /*!< I2C communication state        */
 
   __IO HAL_I2C_ErrorTypeDef  ErrorCode;  /* I2C Error code                   */
+
+  uint8_t                    *gs_pRxBuffPtr;  /*!< Pointer to I2C transfer buffer  used as source info Rx buffer in slave mode  - added by AW */
+
+  uint16_t                   gs_RxferSize;   /*!< I2C transfer size           used as source info Rx buffer in slave mode     - added by AW */
+
+  uint8_t                    *gs_pTxBuffPtr;  /*!< Pointer to I2C transfer buffer  used as source info Tx buffer in slave mode - added by AW */
+
+  uint16_t                   gs_TxferSize;
 
 }I2C_HandleTypeDef;
 
@@ -199,7 +208,7 @@ typedef struct
                                          ((MASK) == I2C_OA2_MASK04) || \
                                          ((MASK) == I2C_OA2_MASK05) || \
                                          ((MASK) == I2C_OA2_MASK06) || \
-                                         ((MASK) == I2C_OA2_MASK07))  
+                                         ((MASK) == I2C_OA2_MASK07))
 /**
   * @}
   */
@@ -238,8 +247,8 @@ typedef struct
                                   ((SIZE) == I2C_MEMADD_SIZE_16BIT))
 /**
   * @}
-  */  
-  
+  */
+
 /** @defgroup I2C_ReloadEndMode_definition
   * @{
   */
@@ -263,12 +272,12 @@ typedef struct
 #define  I2C_GENERATE_STOP                I2C_CR2_STOP
 #define  I2C_GENERATE_START_READ          (uint32_t)(I2C_CR2_START | I2C_CR2_RD_WRN)
 #define  I2C_GENERATE_START_WRITE         I2C_CR2_START
-                              
+
 #define IS_TRANSFER_REQUEST(REQUEST)    (((REQUEST) == I2C_GENERATE_STOP)        || \
                                          ((REQUEST) == I2C_GENERATE_START_READ)  || \
                                          ((REQUEST) == I2C_GENERATE_START_WRITE) || \
                                          ((REQUEST) == I2C_NO_STARTSTOP))
-                               
+
 /**
   * @}
   */
@@ -294,7 +303,7 @@ typedef struct
 
 /** @defgroup I2C_Flag_definition
   * @{
-  */ 
+  */
 
 #define I2C_FLAG_TXE                      I2C_ISR_TXE
 #define I2C_FLAG_TXIS                     I2C_ISR_TXIS
@@ -319,8 +328,8 @@ typedef struct
 
 /**
   * @}
-  */ 
-  
+  */
+
 /* Exported macro ------------------------------------------------------------*/
 
 /** @brief Reset I2C handle state
@@ -342,13 +351,13 @@ typedef struct
   *            @arg I2C_IT_ADDRI: Address match interrupt enable
   *            @arg I2C_IT_RXI: RX interrupt enable
   *            @arg I2C_IT_TXI: TX interrupt enable
-  *   
+  *
   * @retval None
   */
-  
+
 #define __HAL_I2C_ENABLE_IT(__HANDLE__, __INTERRUPT__)   ((__HANDLE__)->Instance->CR1 |= (__INTERRUPT__))
 #define __HAL_I2C_DISABLE_IT(__HANDLE__, __INTERRUPT__)  ((__HANDLE__)->Instance->CR1 &= (~(__INTERRUPT__)))
- 
+
 /** @brief  Checks if the specified I2C interrupt source is enabled or disabled.
   * @param  __HANDLE__: specifies the I2C Handle.
   *         This parameter can be I2C where x: 1 or 2 to select the I2C peripheral.
@@ -361,7 +370,7 @@ typedef struct
   *            @arg I2C_IT_ADDRI: Address match interrupt enable
   *            @arg I2C_IT_RXI: RX interrupt enable
   *            @arg I2C_IT_TXI: TX interrupt enable
-  *   
+  *
   * @retval The new state of __IT__ (TRUE or FALSE).
   */
 #define __HAL_I2C_GET_IT_SOURCE(__HANDLE__, __INTERRUPT__) ((((__HANDLE__)->Instance->CR1 & (__INTERRUPT__)) == (__INTERRUPT__)) ? SET : RESET)
@@ -383,7 +392,7 @@ typedef struct
   *            @arg I2C_FLAG_ARLO:     Arbitration lost
   *            @arg I2C_FLAG_OVR:      Overrun/Underrun
   *            @arg I2C_FLAG_PECERR:   PEC error in reception
-  *            @arg I2C_FLAG_TIMEOUT:  Timeout or Tlow detection flag 
+  *            @arg I2C_FLAG_TIMEOUT:  Timeout or Tlow detection flag
   *            @arg I2C_FLAG_ALERT:    SMBus alert
   *            @arg I2C_FLAG_BUSY:     Bus busy
   *            @arg I2C_FLAG_DIR:      Transfer direction (slave mode)
@@ -403,15 +412,15 @@ typedef struct
   *            @arg I2C_FLAG_STOPF:   STOP detection flag
   *            @arg I2C_FLAG_BERR:    Bus error
   *            @arg I2C_FLAG_ARLO:    Arbitration lost
-  *            @arg I2C_FLAG_OVR:     Overrun/Underrun            
+  *            @arg I2C_FLAG_OVR:     Overrun/Underrun
   *            @arg I2C_FLAG_PECERR:  PEC error in reception
-  *            @arg I2C_FLAG_TIMEOUT: Timeout or Tlow detection flag 
+  *            @arg I2C_FLAG_TIMEOUT: Timeout or Tlow detection flag
   *            @arg I2C_FLAG_ALERT:   SMBus alert
-  *   
+  *
   * @retval None
   */
 #define __HAL_I2C_CLEAR_FLAG(__HANDLE__, __FLAG__) ((__HANDLE__)->Instance->ICR = ((__FLAG__) & I2C_FLAG_MASK))
- 
+
 
 #define __HAL_I2C_ENABLE(__HANDLE__)                            ((__HANDLE__)->Instance->CR1 |=  I2C_CR1_PE)
 #define __HAL_I2C_DISABLE(__HANDLE__)                           ((__HANDLE__)->Instance->CR1 &=  ~I2C_CR1_PE)
@@ -426,6 +435,8 @@ typedef struct
 
 #define IS_I2C_OWN_ADDRESS1(ADDRESS1)   ((ADDRESS1) <= (uint32_t)0x000003FF)
 #define IS_I2C_OWN_ADDRESS2(ADDRESS2)   ((ADDRESS2) <= (uint16_t)0x00FF)
+
+#define __GS_HAL_I2C_MULTIPLE_IT_CHECK(__HANDLE__, __INTERRUPT__) ((((__HANDLE__)->Instance->CR1 & (__INTERRUPT__)) != 0x00) ? SET : RESET)	//added by AW
 
 /* Include I2C HAL Extension module */
 #include "stm32l0xx_hal_i2c_ex.h"
@@ -478,14 +489,18 @@ void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *hi2c);
 HAL_I2C_StateTypeDef HAL_I2C_GetState(I2C_HandleTypeDef *hi2c);
 uint32_t             HAL_I2C_GetError(I2C_HandleTypeDef *hi2c);
 
-/**
-  * @}
-  */ 
+HAL_StatusTypeDef GS_HAL_I2C_Slave_Transmit_Receive_IT(I2C_HandleTypeDef *hi2c, uint8_t *pTxData, uint16_t TxSize, uint8_t *pRxData, uint16_t RxSize); //AW
+void GS_HAL_I2C_EV_IRQHandler(I2C_HandleTypeDef *hi2c);		//AW
+
 
 /**
   * @}
-  */ 
-  
+  */
+
+/**
+  * @}
+  */
+
 #ifdef __cplusplus
 }
 #endif

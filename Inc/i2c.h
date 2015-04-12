@@ -46,9 +46,9 @@
 #define I2Cx_IRQHandler              I2C1_IRQHandler
 
 /* Size of Trasmission buffer */
-#define TXBUFFERSIZE                      (COUNTOF(aTxBuffer) - 1)
+#define TXBUFFERSIZE                      30
 /* Size of Reception buffer */
-#define RXBUFFERSIZE                      TXBUFFERSIZE
+#define RXBUFFERSIZE                      1
 
 /* Exported macro ------------------------------------------------------------*/
 #define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
