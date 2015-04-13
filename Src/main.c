@@ -51,9 +51,8 @@ int main(void)
         ARA_I2C_Listen();
         ADCVoltageValue = ARA_ADC_GetValue();
         bit = ARA_ADC_GetBit(ADCVoltageValue);
-        //BufMemberTypeDef memBit = { .member_int = bit };
         FIFO_write_trample(&AdcFIFO, &bit, 1);
-        //AddMember(&AdcBitBuffer, &memBit);
+        //FIFO_write_trample(&AdcFIFO, &ADCVoltageValue, 1);
     }
 
 }

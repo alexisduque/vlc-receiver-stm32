@@ -28,9 +28,9 @@ void MX_ADC_Init(void)
     */
     AdcHandle.Instance = ADC1;
     AdcHandle.Init.OversamplingMode = DISABLE;
-    AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
+    AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV1;
     AdcHandle.Init.Resolution = ADC_RESOLUTION12b;
-    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_28CYCLES_5;
     AdcHandle.Init.ScanDirection = ADC_SCAN_DIRECTION_UPWARD;
     AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
     AdcHandle.Init.ContinuousConvMode = ENABLE;

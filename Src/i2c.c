@@ -18,6 +18,7 @@
 #define MASTER_REQ_STOP         0x03
 #define I2C_TIMING_100KHZ       0x00A03D53
 #define I2C_TIMING_400KHZ       0x00500615
+#define I2C_TIMING_32_400KHZ    0x00B0122A
 #define SLAVE_TX_ENABLED        0x01
 #define SLAVE_TX_DISABLED       0x00
 
@@ -27,7 +28,7 @@ uint8_t slaveTxEnabled = SLAVE_TX_DISABLED;
 I2C_HandleTypeDef I2CxHandle;
 
 /* Buffer used for transmission */
-unsigned char aTxBuffer[TXBUFFERSIZE];
+uint8_t aTxBuffer[TXBUFFERSIZE];
 //uint8_t aTxBuffer = 8;
 uint16_t aTxSize = TXBUFFERSIZE;
 /* Buffer used for reception */
@@ -68,7 +69,7 @@ void MX_I2C1_Init(void)
     HAL_NVIC_EnableIRQ(I2Cx_IRQn);
 
     I2CxHandle.Instance = I2C1;
-    I2CxHandle.Init.Timing = I2C_TIMING_400KHZ;
+    I2CxHandle.Init.Timing = I2C_TIMING_32_400KHZ;
     I2CxHandle.Init.OwnAddress1 = I2C_ADDRESS;
     I2CxHandle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
     I2CxHandle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;
@@ -114,25 +115,27 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef *I2CxHandle)
 
 void ARA_I2C_Listen(void)
 {
-    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_DISABLED)
-    {
-        slaveTxEnabled = SLAVE_TX_ENABLED;
-        (&I2CxHandle)->State = HAL_I2C_STATE_READY;
-        __HAL_I2C_DISABLE_IT(&I2CxHandle, I2C_IT_ERRI | I2C_IT_TCI | I2C_IT_STOPI | I2C_IT_NACKI | I2C_IT_ADDRI | I2C_IT_RXI);
-    }
-    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_ENABLED)
-    {
-        slaveTxEnabled = SLAVE_TX_DISABLED;
-    }
-    if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
-                slaveTxEnabled == SLAVE_TX_DISABLED)
-    {
-        HAL_I2C_Slave_Receive_IT(&I2CxHandle, (uint8_t*)aRxBuffer, aRxSize);
-    } else if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
-                slaveTxEnabled == SLAVE_TX_ENABLED)
-    {
-        HAL_I2C_Slave_Transmit_IT(&I2CxHandle, (uint8_t*)aTxBuffer, aTxSize);
-    }
+//    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_DISABLED)
+//    {
+//        slaveTxEnabled = SLAVE_TX_ENABLED;
+//        (&I2CxHandle)->State = HAL_I2C_STATE_READY;
+//        __HAL_I2C_DISABLE_IT(&I2CxHandle, I2C_IT_ERRI | I2C_IT_TCI | I2C_IT_STOPI | I2C_IT_NACKI | I2C_IT_ADDRI | I2C_IT_RXI);
+//    }
+//    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_ENABLED)
+//    {
+//        slaveTxEnabled = SLAVE_TX_DISABLED;
+//    }
+//    if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
+//                slaveTxEnabled == SLAVE_TX_DISABLED)
+//    {
+//        HAL_I2C_Slave_Receive_IT(&I2CxHandle, (uint8_t*)aRxBuffer, aRxSize);
+//    } else if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
+//                slaveTxEnabled == SLAVE_TX_ENABLED)
+//    {
+//        HAL_I2C_Slave_Transmit_IT(&I2CxHandle, (uint8_t*)aTxBuffer, aTxSize);
+//    }
+
+    HAL_I2C_Slave_Transmit_IT(&I2CxHandle, (uint8_t*)aTxBuffer, aTxSize);
 
 }
 
