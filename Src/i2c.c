@@ -27,7 +27,7 @@ uint8_t slaveTxEnabled = SLAVE_TX_DISABLED;
 I2C_HandleTypeDef I2CxHandle;
 
 /* Buffer used for transmission */
-uint8_t aTxBuffer[TXBUFFERSIZE];
+unsigned char aTxBuffer[TXBUFFERSIZE];
 //uint8_t aTxBuffer = 8;
 uint16_t aTxSize = TXBUFFERSIZE;
 /* Buffer used for reception */
@@ -74,7 +74,7 @@ void MX_I2C1_Init(void)
     I2CxHandle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;
     I2CxHandle.Init.OwnAddress2 = 0;
     I2CxHandle.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-    I2CxHandle.Init.GeneralCallMode = I2C_GENERALCALL_ENABLED;
+    I2CxHandle.Init.GeneralCallMode = I2C_GENERALCALL_DISABLED;
     I2CxHandle.Init.NoStretchMode = I2C_NOSTRETCH_DISABLED;
     if(HAL_I2C_Init(&I2CxHandle) != HAL_OK)
     {
@@ -114,6 +114,16 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef *I2CxHandle)
 
 void ARA_I2C_Listen(void)
 {
+    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_DISABLED)
+    {
+        slaveTxEnabled = SLAVE_TX_ENABLED;
+        (&I2CxHandle)->State = HAL_I2C_STATE_READY;
+        __HAL_I2C_DISABLE_IT(&I2CxHandle, I2C_IT_ERRI | I2C_IT_TCI | I2C_IT_STOPI | I2C_IT_NACKI | I2C_IT_ADDRI | I2C_IT_RXI);
+    }
+    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_ENABLED)
+    {
+        slaveTxEnabled = SLAVE_TX_DISABLED;
+    }
     if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
                 slaveTxEnabled == SLAVE_TX_DISABLED)
     {

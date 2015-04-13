@@ -23,6 +23,7 @@ extern ADC_HandleTypeDef AdcHandle;
 
 void MX_ADC_Init(void);
 uint32_t ARA_ADC_GetValue(void);
+int ARA_ADC_GetBit(uint32_t voltage);
 
 #ifdef __cplusplus
 }

@@ -17,6 +17,7 @@
 #include "stm32l0xx_hal.h"
 #include "stm32l0xx_nucleo.h"
 #include "fifo.h"
+#include "bitbuffer.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
@@ -26,6 +27,7 @@
 void Error_Handler(void);
 
 extern FIFO_t AdcFIFO;
+extern BufTypeDef AdcBitBuffer;
 extern uint8_t AdcBuffer[BUFFER_SIZE];
 #endif /* __MAIN_H */
 

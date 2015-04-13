@@ -12,6 +12,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
+#define THRESHOLD 2000
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef AdcHandle;
 
@@ -28,8 +29,8 @@ void MX_ADC_Init(void)
     AdcHandle.Instance = ADC1;
     AdcHandle.Init.OversamplingMode = DISABLE;
     AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV2;
-    AdcHandle.Init.Resolution = ADC_RESOLUTION10b;
-    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_13CYCLES_5;
+    AdcHandle.Init.Resolution = ADC_RESOLUTION12b;
+    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
     AdcHandle.Init.ScanDirection = ADC_SCAN_DIRECTION_UPWARD;
     AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
     AdcHandle.Init.ContinuousConvMode = ENABLE;
@@ -95,7 +96,7 @@ uint32_t ARA_ADC_GetValue(void)
     if(HAL_ADC_Start(&AdcHandle) != HAL_OK)
     {
         /* Start Conversation Error */
-        //Error_Handler();
+        Error_Handler();
     }
 
     /* Wait for the end of conversion */
@@ -105,9 +106,14 @@ uint32_t ARA_ADC_GetValue(void)
     if(HAL_ADC_GetState(&AdcHandle) == HAL_ADC_STATE_EOC)
     {
         /* Get the converted value of regular channel */
-        return 3330*HAL_ADC_GetValue(&AdcHandle)/4095;
+        return 3330 * HAL_ADC_GetValue(&AdcHandle) / 4095;
     }
     return 0;
+}
+
+int ARA_ADC_GetBit(uint32_t voltage)
+{
+    return voltage > THRESHOLD ? 1 : 0;
 }
 /**
   * @}

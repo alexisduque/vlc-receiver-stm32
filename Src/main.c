@@ -14,14 +14,15 @@
 #include "i2c.h"
 #include "gpio.h"
 #include "fifo.h"
-
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 FIFO_t AdcFIFO;
 uint8_t AdcBuffer[BUFFER_SIZE];
+unsigned char bit = 0;
 uint32_t ADCVoltageValue = 0;
+
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
@@ -34,6 +35,7 @@ int main(void)
     HAL_Init();
     /* Init LED2 */
     BSP_LED_Init(LED2);
+    BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
     /* Configure the system clock */
     SystemClock_Config();
 
@@ -48,7 +50,10 @@ int main(void)
     {
         ARA_I2C_Listen();
         ADCVoltageValue = ARA_ADC_GetValue();
-        FIFO_write_trample(&AdcFIFO, &ADCVoltageValue, 1);
+        bit = ARA_ADC_GetBit(ADCVoltageValue);
+        //BufMemberTypeDef memBit = { .member_int = bit };
+        FIFO_write_trample(&AdcFIFO, &bit, 1);
+        //AddMember(&AdcBitBuffer, &memBit);
     }
 
 }

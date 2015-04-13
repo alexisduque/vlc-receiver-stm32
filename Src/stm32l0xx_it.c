@@ -67,7 +67,7 @@ void SysTick_Handler(void)
 */
 void I2C1_IRQHandler(void)
 {
-    HAL_NVIC_ClearPendingIRQ(I2C1_IRQn);
+    //HAL_NVIC_ClearPendingIRQ(I2C1_IRQn);
     HAL_I2C_EV_IRQHandler(&I2CxHandle);
     HAL_I2C_ER_IRQHandler(&I2CxHandle);
 
