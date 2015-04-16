@@ -20,6 +20,7 @@
 /* Private variables ---------------------------------------------------------*/
 FIFO_t AdcFIFO;
 uint8_t AdcBuffer[BUFFER_SIZE];
+uint8_t testVal = 0x02;
 unsigned char bit = 0;
 uint32_t ADCVoltageValue = 0;
 
@@ -51,6 +52,7 @@ int main(void)
         ARA_I2C_Listen();
         ADCVoltageValue = ARA_ADC_GetValue();
         bit = ARA_ADC_GetBit(ADCVoltageValue);
+        //bit = !bit;
         FIFO_write_trample(&AdcFIFO, &bit, 1);
         //FIFO_write_trample(&AdcFIFO, &ADCVoltageValue, 1);
     }

@@ -53,7 +53,7 @@
 	</File>
 	<File name="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="81918" topLine="2486" />
+			<Cursor1 position="76350" topLine="2358" />
 		</Cursor>
 	</File>
 	<File name="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_spi.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -78,7 +78,7 @@
 	</File>
 	<File name="Inc\i2c.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1932" topLine="34" />
+			<Cursor1 position="1933" topLine="45" />
 		</Cursor>
 	</File>
 	<File name="Inc\main.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -96,9 +96,9 @@
 			<Cursor1 position="2288" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="Src\adc.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Src\adc.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3708" topLine="82" />
+			<Cursor1 position="3390" topLine="79" />
 		</Cursor>
 	</File>
 	<File name="Src\fifo.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -111,14 +111,14 @@
 			<Cursor1 position="923" topLine="15" />
 		</Cursor>
 	</File>
-	<File name="Src\i2c.c" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+	<File name="Src\i2c.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1181" topLine="20" />
+			<Cursor1 position="3140" topLine="69" />
 		</Cursor>
 	</File>
-	<File name="Src\main.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Src\main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1401" topLine="32" />
+			<Cursor1 position="1841" topLine="33" />
 		</Cursor>
 	</File>
 	<File name="Src\stm32l0xx_hal_msp.c" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -131,9 +131,9 @@
 			<Cursor1 position="2797" topLine="39" />
 		</Cursor>
 	</File>
-	<File name="startup_stm32l0xx.S" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="startup_stm32l0xx.S" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6353" topLine="145" />
+			<Cursor1 position="6630" topLine="145" />
 		</Cursor>
 	</File>
 </EmBlocks_layout_file>

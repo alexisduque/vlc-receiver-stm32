@@ -46,7 +46,7 @@
 #define I2Cx_IRQHandler              I2C1_IRQHandler
 
 /* Size of Trasmission buffer */
-#define TXBUFFERSIZE                      200
+#define TXBUFFERSIZE                      400
 /* Size of Reception buffer */
 #define RXBUFFERSIZE                      1
 
