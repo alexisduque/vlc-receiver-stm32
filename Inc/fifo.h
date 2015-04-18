@@ -1,10 +1,20 @@
+/**
+  ******************************************************************************
+  * File Name          : fifo.
+  * Date               : 05/04/2015 10:49:20
+  * Description        : This file provides code for the configuration
+  *                      of the FIFO ABC Buffer.
+  ******************************************************************************
+  */
+
 #ifndef FIFO_H
 #define FIFO_H
 
 #include <stdint.h>
 #include <stddef.h>
 
-typedef struct {
+typedef struct
+{
     uint8_t *bufptr;    // pointer to the buffer array
     size_t bufsize;    // size of buffer
     size_t rdidx;    // points to next address to be read
@@ -15,7 +25,8 @@ typedef struct {
 } FIFO_t;
 
 // RESULT Enum
-typedef enum{
+typedef enum
+{
     RES_OK,         ///< Function executed successfully
     RES_FAIL,       ///< Function failed to execute properly
     RES_INVALID,    ///< Parameters returned are not valid

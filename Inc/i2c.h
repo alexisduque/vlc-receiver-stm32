@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * File Name          : I2C.h
+  * File Name          : Inc/i2c.h
   * Date               : 05/04/2015 10:49:21
   * Description        : This file provides code for the configuration
   *                      of the I2C instances.
@@ -46,7 +46,7 @@
 #define I2Cx_IRQHandler              I2C1_IRQHandler
 
 /* Size of Trasmission buffer */
-#define TXBUFFERSIZE                      400
+#define TXBUFFERSIZE                      150
 /* Size of Reception buffer */
 #define RXBUFFERSIZE                      1
 

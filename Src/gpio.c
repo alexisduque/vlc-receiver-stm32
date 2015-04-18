@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * File Name          : gpio.c
+  * File Name          : Src/gpio.c
   * Date               : 05/04/2015 10:49:19
   * Description        : This file provides code for the configuration
   *                      of all used GPIO pins.

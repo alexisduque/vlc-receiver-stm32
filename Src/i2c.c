@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * File Name          : i2c.c
+  * File Name          : Src/i2c.c
   * Date               : 05/04/2015 10:49:20
   * Description        : This file provides code for the configuration
   *                      of the I2C instances.
@@ -115,28 +115,7 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef *I2CxHandle)
 
 void ARA_I2C_Listen(void)
 {
-//    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_DISABLED)
-//    {
-//        slaveTxEnabled = SLAVE_TX_ENABLED;
-//        (&I2CxHandle)->State = HAL_I2C_STATE_READY;
-//        __HAL_I2C_DISABLE_IT(&I2CxHandle, I2C_IT_ERRI | I2C_IT_TCI | I2C_IT_STOPI | I2C_IT_NACKI | I2C_IT_ADDRI | I2C_IT_RXI);
-//    }
-//    if (BSP_PB_GetState(BUTTON_KEY) != 1 && slaveTxEnabled == SLAVE_TX_ENABLED)
-//    {
-//        slaveTxEnabled = SLAVE_TX_DISABLED;
-//    }
-//    if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
-//                slaveTxEnabled == SLAVE_TX_DISABLED)
-//    {
-//        HAL_I2C_Slave_Receive_IT(&I2CxHandle, (uint8_t*)aRxBuffer, aRxSize);
-//    } else if (HAL_I2C_GetState(&I2CxHandle) == HAL_I2C_STATE_READY &&
-//                slaveTxEnabled == SLAVE_TX_ENABLED)
-//    {
-//        HAL_I2C_Slave_Transmit_IT(&I2CxHandle, (uint8_t*)aTxBuffer, aTxSize);
-//    }
-
     HAL_I2C_Slave_Transmit_IT(&I2CxHandle, (uint8_t*)aTxBuffer, aTxSize);
-
 }
 
 void HAL_I2C_SlaveTxCpltCallback (I2C_HandleTypeDef *I2CxHandle)
@@ -155,8 +134,8 @@ void HAL_I2C_SlaveRxCpltCallback (I2C_HandleTypeDef *I2CxHandle)
     {
         slaveTxEnabled = SLAVE_TX_DISABLED;
     }
+    Flush_Buffer((uint8_t*)aRxBuffer, aRxSize);
 }
-    //Flush_Buffer((uint8_t*)aRxBuffer, aRxSize);
 
 /**
   * @brief  Flushes the buffer
@@ -169,7 +148,6 @@ static void Flush_Buffer(uint8_t* pBuffer, uint16_t BufferLength)
     while(BufferLength--)
     {
         *pBuffer = 0;
-
         pBuffer++;
     }
 }
@@ -184,12 +162,7 @@ static void Flush_Buffer(uint8_t* pBuffer, uint16_t BufferLength)
 void HAL_I2C_ErrorCallback(I2C_HandleTypeDef *I2CxHandle)
 {
     /* Turn On LED2 */
-    if (HAL_I2C_GetError(I2CxHandle) != HAL_I2C_ERROR_AF)
-    {
-        Error_Handler();
-    } else {
-        slaveTxEnabled = SLAVE_TX_DISABLED;
-    }
+    Error_Handler();
 }
 
 /**

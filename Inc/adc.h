@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * File Name          : ADC.h
+  * File Name          : Inc/adc.h
   * Date               : 05/04/2015 10:49:20
   * Description        : This file provides code for the configuration
   *                      of the ADC instances.

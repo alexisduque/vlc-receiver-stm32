@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * File Name          : gpio.h
+  * File Name          : Inc/gpio.h
   * Date               : 05/04/2015 10:49:20
   * Description        : This file contains all the functions prototypes for
   *                      the gpio
