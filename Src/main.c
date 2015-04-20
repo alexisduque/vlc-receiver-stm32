@@ -55,7 +55,7 @@ int main(void)
         bit = ARA_ADC_GetBit(ADCVoltageValue);
         if (bit == 1)
         {
-            bitBuffer |= (1u << counter);
+            bitBuffer |= (1u << (7 - counter));
         }
         counter++;
         if (counter > 7)
