@@ -42,6 +42,8 @@
 
 /* External variables --------------------------------------------------------*/
 extern I2C_HandleTypeDef I2CxHandle;
+extern DMA_HandleTypeDef DmaHandle;
+extern ADC_HandleTypeDef AdcHandle;
 
 /******************************************************************************/
 /*            Cortex-M0+ Processor Interruption and Exception Handlers         */
@@ -53,6 +55,7 @@ extern I2C_HandleTypeDef I2CxHandle;
 void SysTick_Handler(void)
 {
     HAL_IncTick();
+    HAL_SYSTICK_IRQHandler();
 }
 
 /******************************************************************************/
@@ -61,7 +64,17 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32l0xx.s).                    */
 /******************************************************************************/
+/**
+* @brief This function handles DMA1 Channel 1 interrupt.
+*/
+void DMA1_Channel1_IRQHandler(void)
+{
 
+  HAL_DMA_IRQHandler(AdcHandle.DMA_Handle);
+
+}
+
+/**
 /**
 * @brief This function handles I2C1 global interrupt (combined with EXTI line 23 interrupt).
 */

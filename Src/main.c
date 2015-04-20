@@ -11,6 +11,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "dma.h"
 #include "i2c.h"
 #include "gpio.h"
 #include "fifo.h"
@@ -20,10 +21,6 @@
 /* Private variables ---------------------------------------------------------*/
 FIFO_t AdcFIFO;
 uint8_t AdcBuffer[BUFFER_SIZE];
-uint8_t bitBuffer = 0x00;
-int counter = 0;
-unsigned char bit = 0;
-uint32_t ADCVoltageValue = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -41,29 +38,19 @@ int main(void)
     /* Configure the system clock */
     SystemClock_Config();
 
-    /* Initialize all configured peripherals */
     FIFO_init(&AdcFIFO, AdcBuffer, BUFFER_SIZE);
+
+    /* Initialize all configured peripherals */
     MX_GPIO_Init();
+    MX_DMA_Init();
     MX_ADC_Init();
     MX_I2C1_Init();
+
 
     /* Infinite loop */
     while(1)
     {
         ARA_I2C_Listen();
-        ADCVoltageValue = ARA_ADC_GetValue();
-        bit = ARA_ADC_GetBit(ADCVoltageValue);
-        if (bit == 1)
-        {
-            bitBuffer |= (1u << (7 - counter));
-        }
-        counter++;
-        if (counter > 7)
-        {
-            FIFO_write_trample(&AdcFIFO, &bitBuffer, 1);
-            counter = 0;
-            bitBuffer = 0x00;
-        }
     }
 
 }
@@ -84,15 +71,18 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
     RCC_OscInitStruct.HSIState = RCC_HSI_ON;
     RCC_OscInitStruct.HSICalibrationValue = 16;
-    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+    RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+    RCC_OscInitStruct.PLL.PLLMUL = RCC_PLLMUL_4;
+    RCC_OscInitStruct.PLL.PLLDIV = RCC_PLLDIV_2;
     HAL_RCC_OscConfig(&RCC_OscInitStruct);
 
     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_SYSCLK;
-    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+    RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
-    HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0);
+    HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1);
 
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
     PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;

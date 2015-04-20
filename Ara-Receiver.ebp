@@ -168,6 +168,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Inc\adc.h" />
+		<Unit filename="Inc\dma.h" />
 		<Unit filename="Inc\fifo.h" />
 		<Unit filename="Inc\gpio.h" />
 		<Unit filename="Inc\i2c.h" />
@@ -175,6 +176,9 @@
 		<Unit filename="Inc\stm32l0xx_hal_conf.h" />
 		<Unit filename="Inc\stm32l0xx_it.h" />
 		<Unit filename="Src\adc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Src\dma.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="Src\fifo.c">
