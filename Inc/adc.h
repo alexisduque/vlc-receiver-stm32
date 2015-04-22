@@ -24,7 +24,7 @@ extern DMA_HandleTypeDef DmaHandle;
 
 void MX_ADC_Init(void);
 uint32_t ARA_ADC_GetValue(void);
-int ARA_ADC_GetBit(uint32_t voltage);
+int ARA_ADC_Threashold(uint32_t voltage);
 uint32_t ARA_ADC_Start(void);
 
 #ifdef __cplusplus

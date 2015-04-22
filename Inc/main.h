@@ -15,7 +15,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 #include "stm32l0xx_hal.h"
-#include "stm32l0xx_nucleo.h"
 #include "fifo.h"
 
 /* Exported types ------------------------------------------------------------*/

@@ -32,9 +32,7 @@ int main(void)
 
     /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
     HAL_Init();
-    /* Init LED2 */
-    BSP_LED_Init(LED2);
-    BSP_PB_Init(BUTTON_KEY, BUTTON_MODE_GPIO);
+
     /* Configure the system clock */
     SystemClock_Config();
 
@@ -42,7 +40,6 @@ int main(void)
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
-    MX_DMA_Init();
     MX_ADC_Init();
     MX_I2C1_Init();
 
@@ -85,11 +82,10 @@ void SystemClock_Config(void)
     HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1);
 
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
-    PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
+    PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_SYSCLK;
     HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
 
     __SYSCFG_CLK_ENABLE();
-
 }
 
 /**
@@ -99,8 +95,6 @@ void SystemClock_Config(void)
   */
 void Error_Handler(void)
 {
-    /* Turn On LED2 */
-    BSP_LED_On(LED2);
 }
 
 #ifdef USE_FULL_ASSERT
