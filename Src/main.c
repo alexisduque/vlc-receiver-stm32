@@ -15,12 +15,14 @@
 #include "i2c.h"
 #include "gpio.h"
 #include "fifo.h"
+#include "uart.h"
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-FIFO_t AdcFIFO;
-uint8_t AdcBuffer[BUFFER_SIZE];
+
+extern UART_HandleTypeDef huart2;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
@@ -42,8 +44,12 @@ int main(void)
     MX_GPIO_Init();
     MX_ADC_Init();
     MX_I2C1_Init();
+    MX_UART2_UART_Init();
+    ARA_I2C_Listen();
 
+    char *msg = "Hello Nucleo Fun!\n\r";
 
+    HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
     /* Infinite loop */
     while(1)
     {
@@ -81,8 +87,9 @@ void SystemClock_Config(void)
     RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
     HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1);
 
-    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
-    PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_SYSCLK;
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_I2C1;
+    PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+    PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_PCLK1;
     HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit);
 
     __SYSCFG_CLK_ENABLE();

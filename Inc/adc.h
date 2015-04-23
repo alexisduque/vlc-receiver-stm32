@@ -22,6 +22,9 @@
 extern ADC_HandleTypeDef AdcHandle;
 extern DMA_HandleTypeDef DmaHandle;
 
+extern FIFO_t AdcFIFO;
+extern uint8_t AdcBuffer[BUFFER_SIZE];
+
 void MX_ADC_Init(void);
 uint32_t ARA_ADC_GetValue(void);
 int ARA_ADC_Threashold(uint32_t voltage);

@@ -9,6 +9,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "i2c.h"
+#include "adc.h"
 #include "main.h"
 
 /* Private macro -------------------------------------------------------------*/
@@ -19,7 +20,7 @@
 #define I2C_TIMING_100KHZ       0x00A03D53
 #define I2C_TIMING_400KHZ       0x00500615
 #define I2C_TIMING_32_400KHZ    0x00B0122A
-#define I2C_TIMING_32_SFAST    .0x0040060D
+#define I2C_TIMING_32_SFAST     0x0040060D
 #define SLAVE_TX_ENABLED        0x01
 #define SLAVE_TX_DISABLED       0x00
 
@@ -30,7 +31,6 @@ I2C_HandleTypeDef I2CxHandle;
 
 /* Buffer used for transmission */
 uint8_t aTxBuffer[TXBUFFERSIZE];
-//uint8_t aTxBuffer = 8;
 uint16_t aTxSize = TXBUFFERSIZE;
 /* Buffer used for reception */
 uint8_t aRxBuffer[RXBUFFERSIZE];
@@ -66,11 +66,11 @@ void MX_I2C1_Init(void)
     HAL_GPIO_Init(I2Cx_SDA_GPIO_PORT, &GPIO_InitStruct);
 
     /* NVIC for I2C1 */
-    HAL_NVIC_SetPriority(I2Cx_IRQn, 0, 1);
+    HAL_NVIC_SetPriority(I2Cx_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(I2Cx_IRQn);
 
     I2CxHandle.Instance = I2C1;
-    I2CxHandle.Init.Timing = I2C_TIMING_32_400KHZ;
+    I2CxHandle.Init.Timing = 0x00500615;
     I2CxHandle.Init.OwnAddress1 = I2C_ADDRESS;
     I2CxHandle.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
     I2CxHandle.Init.DualAddressMode = I2C_DUALADDRESS_DISABLED;

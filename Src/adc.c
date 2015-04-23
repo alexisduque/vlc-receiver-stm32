@@ -9,14 +9,21 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "adc.h"
+#include "main.h"
+#include "i2c.h"
+#include "fifo.h"
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
-#define THRESHOLD 800
+#define THRESHOLD 0
 #define DMA_BUFFER_SIZE 512
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef AdcHandle;
 DMA_HandleTypeDef DmaHandle;
+
+FIFO_t AdcFIFO;
+uint8_t AdcBuffer[BUFFER_SIZE];
 
 uint32_t resultDMA[DMA_BUFFER_SIZE];
 uint8_t bitBuffer = 0x00;
@@ -24,6 +31,7 @@ uint32_t adcResultDMA;
 int counter = 0;
 unsigned char bit = 0;
 uint32_t ADCVoltageValue = 0;
+uint8_t ADCVoltageValue8 = 0;
 long ADCTimer = 0;
 long ADCCount = 0;
 long offset = 0;
@@ -64,7 +72,7 @@ void MX_ADC_Init(void)
     __HAL_LINKDMA(&AdcHandle, DMA_Handle, DmaHandle);
 
     /* DMA interrupt init */
-    HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
 
     ADC_ChannelConfTypeDef sConfig;
@@ -140,7 +148,7 @@ int ARA_ADC_Threashold(uint32_t voltage)
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 {
     int i = 0;
-
+    ARA_I2C_Listen();
     /* DEBUG SAMPLING RATE PURPOSE */
     ADCTimer = HAL_GetTick() - offset;
     if(ADCTimer == 1000)
@@ -153,7 +161,11 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 
     for (i = 0; i < DMA_BUFFER_SIZE; i++)
     {
-        ADCVoltageValue = 3330 * resultDMA[0] / 4065;
+        ADCVoltageValue = resultDMA[i] / 16;
+        ADCVoltageValue8 = (uint8_t) ADCVoltageValue;
+        FIFO_write_trample(&AdcFIFO, &ADCVoltageValue8, 1);
+
+        /* DISABLE FOR TEST
         bit = ARA_ADC_Threashold(ADCVoltageValue);
         if (bit == 1)
         {
@@ -166,6 +178,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
             counter = 0;
             bitBuffer = 0x00;
         }
+        */
     }
 }
 

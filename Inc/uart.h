@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Inc/main.h
+  * @file    Inc/uart.h
   * @author  Alexis Duque
   * @version V0.0.1
   * @date    30-March-2015
@@ -9,22 +9,21 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __UART_H
+#define __UART_H
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdint.h>
-#include <stdio.h>
 #include "stm32l0xx_hal.h"
-#include "fifo.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-#define BUFFER_SIZE             512
 /* Exported functions ------------------------------------------------------- */
-void Error_Handler(void);
+extern UART_HandleTypeDef huart2;
 
-#endif /* __MAIN_H */
+void MX_UART2_UART_Init(void);
+void HAL_UART_MspInit(UART_HandleTypeDef* huart);
+
+#endif /* __UART_H */
 
 /*****************************END OF FILE**************************************/
