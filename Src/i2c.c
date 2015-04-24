@@ -122,7 +122,10 @@ void ARA_I2C_Listen(void)
 void HAL_I2C_SlaveTxCpltCallback (I2C_HandleTypeDef *I2CxHandle)
 {
     Flush_Buffer((uint8_t*)aTxBuffer, aTxSize);
-    FIFO_read(&AdcFIFO, &aTxBuffer, aTxSize);
+    RES_t res = FIFO_read(&AdcFIFO, &aTxBuffer, aTxSize);
+    if (res != RES_OK) {
+        printf("Empty Buffer");
+    }
 }
 
 void HAL_I2C_SlaveRxCpltCallback (I2C_HandleTypeDef *I2CxHandle)
@@ -148,7 +151,7 @@ static void Flush_Buffer(uint8_t* pBuffer, uint16_t BufferLength)
 {
     while(BufferLength--)
     {
-        *pBuffer = 0;
+        *pBuffer = 1;
         pBuffer++;
     }
 }

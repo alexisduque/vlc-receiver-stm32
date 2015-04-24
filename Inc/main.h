@@ -16,12 +16,11 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "stm32l0xx_hal.h"
-#include "fifo.h"
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
-#define BUFFER_SIZE             512
+#define BUFFER_SIZE             2048
 /* Exported functions ------------------------------------------------------- */
 void Error_Handler(void);
 

@@ -75,7 +75,6 @@ void DMA1_Channel1_IRQHandler(void)
 }
 
 /**
-/**
 * @brief This function handles I2C1 global interrupt (combined with EXTI line 23 interrupt).
 */
 void I2C1_IRQHandler(void)

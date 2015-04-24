@@ -8,33 +8,35 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
+#include <stdlib.h>
+#include <string.h>
 #include "adc.h"
-#include "main.h"
-#include "i2c.h"
-#include "fifo.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 #define THRESHOLD 0
+
 #define DMA_BUFFER_SIZE 512
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef AdcHandle;
 DMA_HandleTypeDef DmaHandle;
+UART_HandleTypeDef huart2;
 
 FIFO_t AdcFIFO;
 uint8_t AdcBuffer[BUFFER_SIZE];
 
 uint32_t resultDMA[DMA_BUFFER_SIZE];
-uint8_t bitBuffer = 0x00;
+uint32_t tmp_resultDMA[DMA_BUFFER_SIZE];
 uint32_t adcResultDMA;
+
+uint8_t bitBuffer = 0x00;
 int counter = 0;
+long offset = 0;
 unsigned char bit = 0;
+
 uint32_t ADCVoltageValue = 0;
 uint8_t ADCVoltageValue8 = 0;
-long ADCTimer = 0;
-long ADCCount = 0;
-long offset = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -83,8 +85,8 @@ void MX_ADC_Init(void)
     AdcHandle.Instance = ADC1;
     AdcHandle.Init.OversamplingMode = DISABLE;
     AdcHandle.Init.ClockPrescaler = ADC_CLOCKPRESCALER_PCLK_DIV1;
-    AdcHandle.Init.Resolution = ADC_RESOLUTION12b;
-    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_7CYCLES_5;
+    AdcHandle.Init.Resolution = ADC_RESOLUTION8b;
+    AdcHandle.Init.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
     AdcHandle.Init.ScanDirection = ADC_SCAN_DIRECTION_UPWARD;
     AdcHandle.Init.DataAlign = ADC_DATAALIGN_RIGHT;
     AdcHandle.Init.ContinuousConvMode = ENABLE;
@@ -148,20 +150,14 @@ int ARA_ADC_Threashold(uint32_t voltage)
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 {
     int i = 0;
-    ARA_I2C_Listen();
-    /* DEBUG SAMPLING RATE PURPOSE */
-    ADCTimer = HAL_GetTick() - offset;
-    if(ADCTimer == 1000)
-    {
-        ADCCount = 0;
-        offset = HAL_GetTick();
-    }
-    ADCCount++;
-    /* END DEBUG */
-
+    memcpy(&tmp_resultDMA, &resultDMA, DMA_BUFFER_SIZE * 4);
     for (i = 0; i < DMA_BUFFER_SIZE; i++)
     {
-        ADCVoltageValue = resultDMA[i] / 16;
+        ADCVoltageValue = tmp_resultDMA[i] / 16;
+
+        int ADCVoltageValueUART =  tmp_resultDMA[i];
+        char * val = itoa(ADCVoltageValueUART);
+
         ADCVoltageValue8 = (uint8_t) ADCVoltageValue;
         FIFO_write_trample(&AdcFIFO, &ADCVoltageValue8, 1);
 
@@ -179,7 +175,12 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
             bitBuffer = 0x00;
         }
         */
+
+        HAL_UART_Transmit(&huart2, (uint8_t*)val, strlen(val), 10);
+        HAL_UART_Transmit(&huart2, (uint8_t*)&";", 1, 10);
     }
+
+    HAL_UART_Transmit(&huart2, (uint8_t*)&"\r\n", 4, 10);
 }
 
 /**

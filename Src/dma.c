@@ -22,6 +22,7 @@
   */
 void MX_DMA_Init(void)
 {
+    //Nothing do to there ...
 }
 
 /**

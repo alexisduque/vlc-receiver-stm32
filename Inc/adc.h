@@ -18,6 +18,10 @@
 #include "stm32l0xx_hal.h"
 #include "gpio.h"
 #include "main.h"
+#include "main.h"
+#include "i2c.h"
+#include "fifo.h"
+#include "uart.h"
 
 extern ADC_HandleTypeDef AdcHandle;
 extern DMA_HandleTypeDef DmaHandle;

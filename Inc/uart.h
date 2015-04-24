@@ -23,6 +23,7 @@ extern UART_HandleTypeDef huart2;
 
 void MX_UART2_UART_Init(void);
 void HAL_UART_MspInit(UART_HandleTypeDef* huart);
+char *itoa(int value);
 
 #endif /* __UART_H */
 

@@ -21,9 +21,7 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-
 extern UART_HandleTypeDef huart2;
-
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 
@@ -47,13 +45,9 @@ int main(void)
     MX_UART2_UART_Init();
     ARA_I2C_Listen();
 
-    char *msg = "Hello Nucleo Fun!\n\r";
-
-    HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 0xFFFF);
     /* Infinite loop */
     while(1)
     {
-        ARA_I2C_Listen();
     }
 
 }
