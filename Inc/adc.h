@@ -18,10 +18,10 @@
 #include "stm32l0xx_hal.h"
 #include "gpio.h"
 #include "main.h"
-#include "main.h"
 #include "i2c.h"
 #include "fifo.h"
 #include "uart.h"
+#include "math.h"
 
 extern ADC_HandleTypeDef AdcHandle;
 extern DMA_HandleTypeDef DmaHandle;
@@ -31,7 +31,7 @@ extern uint8_t AdcBuffer[BUFFER_SIZE];
 
 void MX_ADC_Init(void);
 uint32_t ARA_ADC_GetValue(void);
-int ARA_ADC_Threashold(uint32_t voltage);
+double meanArray(uint32_t * adcArray, long arraySize);
 uint32_t ARA_ADC_Start(void);
 
 #ifdef __cplusplus

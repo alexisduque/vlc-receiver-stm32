@@ -302,7 +302,7 @@
 1403117740 \\vboxsvr\stm32\ara-receiver\drivers\stm32l0xx_hal_driver\inc\stm32l0xx_hal.h
 	"stm32l0xx_hal_conf.h"
 
-1429790599 \\vboxsvr\stm32\ara-receiver\inc\stm32l0xx_hal_conf.h
+1429876008 \\vboxsvr\stm32\ara-receiver\inc\stm32l0xx_hal_conf.h
 	"stm32l0xx_hal_rcc.h"
 	"stm32l0xx_hal_gpio.h"
 	"stm32l0xx_hal_dma.h"
@@ -432,19 +432,20 @@
 1403117738 source:\\vboxsvr\stm32\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_rcc_ex.c
 	"stm32l0xx_hal.h"
 
-1429875761 source:\\vboxsvr\stm32\ara-receiver\src\adc.c
+1431528843 source:\\vboxsvr\stm32\ara-receiver\src\adc.c
 	<stdlib.h>
 	<string.h>
 	"adc.h"
+	"math.h"
 
-1429875744 \\vboxsvr\stm32\ara-receiver\inc\adc.h
+1431519293 \\vboxsvr\stm32\ara-receiver\inc\adc.h
 	"stm32l0xx_hal.h"
 	"gpio.h"
-	"main.h"
 	"main.h"
 	"i2c.h"
 	"fifo.h"
 	"uart.h"
+	"math.h"
 
 1429385877 \\vboxsvr\stm32\ara-receiver\inc\gpio.h
 	"stm32l0xx_hal.h"
@@ -462,7 +463,7 @@
 1429385893 source:\\vboxsvr\stm32\ara-receiver\src\gpio.c
 	"gpio.h"
 
-1429873143 source:\\vboxsvr\stm32\ara-receiver\src\main.c
+1429876008 source:\\vboxsvr\stm32\ara-receiver\src\main.c
 	"main.h"
 	"adc.h"
 	"dma.h"
@@ -471,24 +472,24 @@
 	"fifo.h"
 	"uart.h"
 
-1429875798 \\vboxsvr\stm32\ara-receiver\inc\main.h
+1429876008 \\vboxsvr\stm32\ara-receiver\inc\main.h
 	<stdint.h>
 	<stdio.h>
 	"stm32l0xx_hal.h"
 
-1429796257 \\vboxsvr\stm32\ara-receiver\inc\i2c.h
+1429876008 \\vboxsvr\stm32\ara-receiver\inc\i2c.h
 	"stm32l0xx_hal.h"
 	"gpio.h"
 
 1428223761 source:\\vboxsvr\stm32\ara-receiver\src\stm32l0xx_hal_msp.c
 	"stm32l0xx_hal.h"
 
-1429875599 source:\\vboxsvr\stm32\ara-receiver\src\stm32l0xx_it.c
+1429876008 source:\\vboxsvr\stm32\ara-receiver\src\stm32l0xx_it.c
 	"stm32l0xx_hal.h"
 	"stm32l0xx.h"
 	"stm32l0xx_it.h"
 
-1429525208 \\vboxsvr\stm32\ara-receiver\inc\stm32l0xx_it.h
+1429876008 \\vboxsvr\stm32\ara-receiver\inc\stm32l0xx_it.h
 	"i2c.h"
 
 1429860489 source:\\vboxsvr\stm32\ara-receiver\startup_stm32l0xx.s
@@ -736,7 +737,7 @@
 
 1428223605 source:z:\home\alex\stm32\ara-receiver\startup_stm32l0xx.s
 
-1429875563 source:\\vboxsvr\stm32\ara-receiver\src\i2c.c
+1429876008 source:\\vboxsvr\stm32\ara-receiver\src\i2c.c
 	"i2c.h"
 	"adc.h"
 	"main.h"
@@ -941,15 +942,15 @@
 
 1428916249 \\vboxsvr\stm32\ara-receiver\inc\bitbuffer.h
 
-1429875419 source:\\vboxsvr\stm32\ara-receiver\src\dma.c
+1429876008 source:\\vboxsvr\stm32\ara-receiver\src\dma.c
 	"dma.h"
 
-1429526062 \\vboxsvr\stm32\ara-receiver\inc\dma.h
+1429876008 \\vboxsvr\stm32\ara-receiver\inc\dma.h
 	"stm32l0xx_hal.h"
 
-1429871234 \\vboxsvr\stm32\ara-receiver\inc\uart.h
+1429876008 \\vboxsvr\stm32\ara-receiver\inc\uart.h
 	"stm32l0xx_hal.h"
 
-1429871611 source:\\vboxsvr\stm32\ara-receiver\src\uart.c
+1429876008 source:\\vboxsvr\stm32\ara-receiver\src\uart.c
 	"uart.h"
 
