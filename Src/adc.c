@@ -40,6 +40,10 @@ float average, sum, sumTemp, variance, minVal, maxVal, noise;
 uint32_t ADCVoltageValue = 0;
 uint8_t ADCVoltageValue8 = 0;
 
+char * val;
+char * valBit;
+char * valFiltered;
+
 /* Private function prototypes -----------------------------------------------*/
 double meanArray(uint32_t * adcArray, long arraySize);
 long sumArray(uint32_t * adcArray, long arraySize);
@@ -187,13 +191,24 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
         ADCVoltageValue = tmp_resultDMA[i] / 16;
 
         int ADCVoltageValueUART =  tmp_resultDMA[i];
-        char * val = itoa(ADCVoltageValueUART);
-        uint8_t bit = 0;
+        val = itoa(ADCVoltageValueUART);
+        HAL_UART_Transmit(&huart2, (uint8_t*)val, strlen(val), 10);
+        HAL_UART_Transmit(&huart2, (uint8_t*)&",", 2, 10);
+
         ADCVoltageValue8 = (uint8_t) ADCVoltageValue;
         FIFO_write_trample(&AdcFIFO, &ADCVoltageValue8, 1);
 
+        uint8_t filtered = 0;
+        filtered = ((ADCVoltageValueUART - average) > 0) ? (ADCVoltageValueUART - average) : 0;
+        valFiltered = itoa(filtered);
+        HAL_UART_Transmit(&huart2, (uint8_t*)valFiltered, strlen(valFiltered), 10);
+        HAL_UART_Transmit(&huart2, (uint8_t*)&",", 2, 10);
+
+        uint8_t bit = 0;
         bit = ARA_ADC_Threashold(ADCVoltageValueUART);
-        char * valBit = itoa(bit);
+        valBit = itoa(bit);
+        HAL_UART_Transmit(&huart2, (uint8_t*)valBit, strlen(valBit), 10);
+        HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 4, 10);
 
         /* DISABLE FOR TEST
         bit = ARA_ADC_Threashold(ADCVoltageValue);
@@ -209,12 +224,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
             bitBuffer = 0x00;
         }
         */
-
-        HAL_UART_Transmit(&huart2, (uint8_t*)val, strlen(val), 10);
-        HAL_UART_Transmit(&huart2, (uint8_t*)&",s", 1, 10);
-        HAL_UART_Transmit(&huart2, (uint8_t*)valBit, strlen(val), 10);
-        HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 4, 10);
-
     }
 
     //HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 4, 10);

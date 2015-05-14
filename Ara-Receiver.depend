@@ -432,7 +432,7 @@
 1403117738 source:\\vboxsvr\stm32\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_rcc_ex.c
 	"stm32l0xx_hal.h"
 
-1431528843 source:\\vboxsvr\stm32\ara-receiver\src\adc.c
+1431599100 source:\\vboxsvr\stm32\ara-receiver\src\adc.c
 	<stdlib.h>
 	<string.h>
 	"adc.h"
