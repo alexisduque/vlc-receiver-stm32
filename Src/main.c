@@ -43,7 +43,7 @@ int main(void)
     MX_ADC_Init();
     MX_I2C1_Init();
     MX_UART2_UART_Init();
-    ARA_I2C_Listen();
+    //ARA_I2C_Listen();
 
     /* Infinite loop */
     while(1)

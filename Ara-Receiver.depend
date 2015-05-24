@@ -432,11 +432,12 @@
 1403117738 source:\\vboxsvr\stm32\ara-receiver\drivers\stm32l0xx_hal_driver\src\stm32l0xx_hal_rcc_ex.c
 	"stm32l0xx_hal.h"
 
-1431599100 source:\\vboxsvr\stm32\ara-receiver\src\adc.c
+1432475154 source:\\vboxsvr\stm32\ara-receiver\src\adc.c
 	<stdlib.h>
 	<string.h>
 	"adc.h"
 	"math.h"
+	"4b6b.h"
 
 1431519293 \\vboxsvr\stm32\ara-receiver\inc\adc.h
 	"stm32l0xx_hal.h"
@@ -463,7 +464,7 @@
 1429385893 source:\\vboxsvr\stm32\ara-receiver\src\gpio.c
 	"gpio.h"
 
-1429876008 source:\\vboxsvr\stm32\ara-receiver\src\main.c
+1431857505 source:\\vboxsvr\stm32\ara-receiver\src\main.c
 	"main.h"
 	"adc.h"
 	"dma.h"
@@ -953,4 +954,10 @@
 
 1429876008 source:\\vboxsvr\stm32\ara-receiver\src\uart.c
 	"uart.h"
+
+1432475583 source:\\vboxsvr\stm32\ara-receiver\src\4b6b.c
+	"4b6b.h"
+
+1432457289 \\vboxsvr\stm32\ara-receiver\inc\4b6b.h
+	<stdint.h>
 

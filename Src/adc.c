@@ -12,12 +12,14 @@
 #include <string.h>
 #include "adc.h"
 #include "math.h"
+#include "4b6b.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 #define THRESHOLD 0
 #define DETECTION_THRESHOLD 300
+#define BIT_LENGTH 3
 #define DMA_BUFFER_SIZE 512
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef AdcHandle;
@@ -29,6 +31,7 @@ uint8_t AdcBuffer[BUFFER_SIZE];
 
 uint32_t resultDMA[DMA_BUFFER_SIZE];
 uint32_t tmp_resultDMA[DMA_BUFFER_SIZE];
+uint8_t sampledDMA[DMA_BUFFER_SIZE/2];
 uint32_t adcResultDMA;
 
 uint8_t bitBuffer = 0x00;
@@ -43,6 +46,9 @@ uint8_t ADCVoltageValue8 = 0;
 char * val;
 char * valBit;
 char * valFiltered;
+
+uint8_t buff = 0x00;
+uint8_t * buff_ptr = &buff;
 
 /* Private function prototypes -----------------------------------------------*/
 double meanArray(uint32_t * adcArray, long arraySize);
@@ -150,16 +156,18 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* AdcHandle)
     }
 }
 
-uint8_t ARA_ADC_Threashold(uint8_t voltage)
+uint8_t ARA_ADC_Threashold(uint32_t voltage)
 {
-    return (voltage > average && (maxVal - minVal) > DETECTION_THRESHOLD) ? 1 : 0;
+    if (voltage > 400) return 1;
+    return (voltage > (minVal + DETECTION_THRESHOLD)) ? 1 : 0;
 }
 
 void compute_stat(uint32_t * buffer, int bufferSize)
 {
     int i = 0;
     sum = 0;
-    average, variance = 0;
+    average =0;
+    variance = 0;
     minVal = 0;
     maxVal = 0;
     sumTemp = 0;
@@ -181,34 +189,91 @@ void compute_stat(uint32_t * buffer, int bufferSize)
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 {
-    int i = 0;
+    int i,y, preamb = 0;
+    int succsiveOne = 0;
+    int sample = 0;
+    uint8_t filtered = 0;
     memcpy(&tmp_resultDMA, &resultDMA, DMA_BUFFER_SIZE * 4);
 
     compute_stat(tmp_resultDMA, DMA_BUFFER_SIZE);
     noise = variance < 1000 ? average : noise;
     for (i = 0; i < DMA_BUFFER_SIZE; i++)
     {
+        sample++;
         ADCVoltageValue = tmp_resultDMA[i] / 16;
 
         int ADCVoltageValueUART =  tmp_resultDMA[i];
         val = itoa(ADCVoltageValueUART);
         HAL_UART_Transmit(&huart2, (uint8_t*)val, strlen(val), 10);
         HAL_UART_Transmit(&huart2, (uint8_t*)&",", 2, 10);
-
+        uint8_t bit = 0;
+        bit = ARA_ADC_Threashold(ADCVoltageValueUART);
         ADCVoltageValue8 = (uint8_t) ADCVoltageValue;
-        FIFO_write_trample(&AdcFIFO, &ADCVoltageValue8, 1);
 
+
+        /* USELESS
         uint8_t filtered = 0;
         filtered = ((ADCVoltageValueUART - average) > 0) ? (ADCVoltageValueUART - average) : 0;
         valFiltered = itoa(filtered);
         HAL_UART_Transmit(&huart2, (uint8_t*)valFiltered, strlen(valFiltered), 10);
         HAL_UART_Transmit(&huart2, (uint8_t*)&",", 2, 10);
+        */
 
-        uint8_t bit = 0;
-        bit = ARA_ADC_Threashold(ADCVoltageValueUART);
+        valFiltered = bit == 0 ? itoa(1) : itoa(10);
+
+        if (sample == (BIT_LENGTH))
+        {
+            sample = 0;
+            if (bit == 0)
+            {
+                valFiltered = itoa(-1);
+            }
+            else
+            {
+                succsiveOne = succsiveOne++;
+                valFiltered = 1;
+            }
+            sampledDMA[y] = bit;
+            appendBit(bit, buff_ptr);
+            if (*buff_ptr == CODE_4B6B_PRE2 && preamb == 0)
+            {
+                preamb = 1;
+            }
+            else if(*buff_ptr == CODE_4B6B_PRE2 && preamb == 1)
+            {
+                preamb = 0;
+            }
+            if (preamb == 1)
+            {
+                if (bit == 1)
+                {
+                    bitBuffer |= (1u << (7 - counter));
+                }
+                counter++;
+                if (counter > 7)
+                {
+                    FIFO_write_trample(&AdcFIFO, &bitBuffer, 1);
+                    counter = 0;
+                    bitBuffer = 0x00;
+                }
+
+            }
+            y = y++;
+            HAL_UART_Transmit(&huart2, (uint8_t*)valFiltered, strlen(valFiltered), 10);
+            HAL_UART_Transmit(&huart2, (uint8_t*)&",", 2, 10);
+
+        }
+        else
+        {
+            valFiltered = itoa(0);
+            HAL_UART_Transmit(&huart2, (uint8_t*)valFiltered, strlen(valFiltered), 10);
+            HAL_UART_Transmit(&huart2, (uint8_t*)&",", 2, 10);
+        }
+
         valBit = itoa(bit);
         HAL_UART_Transmit(&huart2, (uint8_t*)valBit, strlen(valBit), 10);
         HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 4, 10);
+
 
         /* DISABLE FOR TEST
         bit = ARA_ADC_Threashold(ADCVoltageValue);
@@ -226,7 +291,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
         */
     }
 
-    //HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 4, 10);
+//HAL_UART_Transmit(&huart2, (uint8_t*)&"\r", 4, 10);
 }
 
 /**

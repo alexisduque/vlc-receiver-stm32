@@ -26,7 +26,7 @@
 			<Cursor1 position="9697" topLine="173" />
 		</Cursor>
 	</File>
-	<File name="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_adc.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Drivers\STM32L0xx_HAL_Driver\Inc\stm32l0xx_hal_adc.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="47887" topLine="879" />
 		</Cursor>
@@ -56,17 +56,22 @@
 			<Cursor1 position="17484" topLine="382" />
 		</Cursor>
 	</File>
-	<File name="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_i2c.c" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="76650" topLine="2355" />
+			<Cursor1 position="83638" topLine="2570" />
 		</Cursor>
 	</File>
-	<File name="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_uart.c" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="65337" topLine="1921" />
+			<Cursor1 position="65328" topLine="1924" />
 		</Cursor>
 	</File>
-	<File name="Inc\adc.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Inc\4b6b.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1517" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="Inc\adc.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="990" topLine="15" />
 		</Cursor>
@@ -83,7 +88,7 @@
 	</File>
 	<File name="Inc\i2c.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2382" topLine="13" />
+			<Cursor1 position="2226" topLine="28" />
 		</Cursor>
 	</File>
 	<File name="Inc\main.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -101,9 +106,19 @@
 			<Cursor1 position="1984" topLine="21" />
 		</Cursor>
 	</File>
-	<File name="Src\adc.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Inc\uart.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6104" topLine="202" />
+			<Cursor1 position="887" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Src\4b6b.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2851" topLine="93" />
+		</Cursor>
+	</File>
+	<File name="Src\adc.c" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7975" topLine="239" />
 		</Cursor>
 	</File>
 	<File name="Src\dma.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -123,27 +138,32 @@
 	</File>
 	<File name="Src\i2c.c" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4027" topLine="76" />
+			<Cursor1 position="3228" topLine="7" />
 		</Cursor>
 	</File>
-	<File name="Src\main.c" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+	<File name="Src\main.c" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="499" topLine="0" />
+			<Cursor1 position="1576" topLine="38" />
 		</Cursor>
 	</File>
 	<File name="Src\stm32l0xx_hal_msp.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2206" topLine="31" />
+			<Cursor1 position="2329" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Src\stm32l0xx_it.c" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2059" topLine="23" />
+			<Cursor1 position="2777" topLine="18" />
 		</Cursor>
 	</File>
-	<File name="startup_stm32l0xx.S" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Src\uart.c" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="6587" topLine="0" />
+			<Cursor1 position="2462" topLine="60" />
+		</Cursor>
+	</File>
+	<File name="startup_stm32l0xx.S" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6266" topLine="114" />
 		</Cursor>
 	</File>
 </EmBlocks_layout_file>

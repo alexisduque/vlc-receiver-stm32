@@ -174,6 +174,7 @@
 		<Unit filename="Drivers\STM32L0xx_HAL_Driver\Src\stm32l0xx_hal_usart.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Inc\4b6b.h" />
 		<Unit filename="Inc\adc.h" />
 		<Unit filename="Inc\dma.h" />
 		<Unit filename="Inc\fifo.h" />
@@ -183,6 +184,9 @@
 		<Unit filename="Inc\stm32l0xx_hal_conf.h" />
 		<Unit filename="Inc\stm32l0xx_it.h" />
 		<Unit filename="Inc\uart.h" />
+		<Unit filename="Src\4b6b.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="Src\adc.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -225,7 +229,7 @@
 			</DoxyBlocks>
 			<code_completion />
 			<debugger>
-				<target_debugging_settings target="Debug" active_interface="ST-link">
+				<target_debugging_settings target="Release" active_interface="ST-link">
 					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBLOCKS}\share\contrib" executable="STLinkGDB.exe" description="" dont_start_server="false" backoff_time="1000" options="0" reg_filter="0" active_family="STMicroelectronics">
 						<family_options family_id="STMicroelectronics">
 							<option opt_id="ID_JTAG_SWD" opt_value="swd" />
@@ -242,7 +246,7 @@
 						</family_options>
 					</debug_interface>
 				</target_debugging_settings>
-				<target_debugging_settings target="Release" active_interface="ST-link">
+				<target_debugging_settings target="Debug" active_interface="ST-link">
 					<debug_interface interface_id="ST-link" ip_address="localhost" ip_port="4242" path="${EMBLOCKS}\share\contrib" executable="STLinkGDB.exe" description="" dont_start_server="false" backoff_time="1000" options="0" reg_filter="0" active_family="STMicroelectronics">
 						<family_options family_id="STMicroelectronics">
 							<option opt_id="ID_JTAG_SWD" opt_value="swd" />
