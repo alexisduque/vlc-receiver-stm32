@@ -17,6 +17,8 @@
 #include "fifo.h"
 #include "uart.h"
 
+#define USE_FULL_ASSERT
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -42,7 +44,7 @@ int main(void)
     MX_GPIO_Init();
     MX_ADC_Init();
     MX_I2C1_Init();
-    MX_UART2_UART_Init();
+    //MX_UART2_UART_Init();
     ARA_I2C_Listen();
 
     /* Infinite loop */
@@ -96,6 +98,7 @@ void SystemClock_Config(void)
   */
 void Error_Handler(void)
 {
+    printf("Error\r\n");
 }
 
 #ifdef USE_FULL_ASSERT

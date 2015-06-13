@@ -15,7 +15,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
-#define THRESHOLD 0
+#define THRESHOLD 400
 
 #define DMA_BUFFER_SIZE 512
 /* Private variables ---------------------------------------------------------*/
@@ -153,15 +153,15 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
     memcpy(&tmp_resultDMA, &resultDMA, DMA_BUFFER_SIZE * 4);
     for (i = 0; i < DMA_BUFFER_SIZE; i++)
     {
-        ADCVoltageValue = tmp_resultDMA[i] / 16;
+        ADCVoltageValue = tmp_resultDMA[i];
 
         int ADCVoltageValueUART =  tmp_resultDMA[i];
         char * val = itoa(ADCVoltageValueUART);
 
-        ADCVoltageValue8 = (uint8_t) ADCVoltageValue;
-        FIFO_write_trample(&AdcFIFO, &ADCVoltageValue8, 1);
+        //ADCVoltageValue8 = (uint8_t) ADCVoltageValue;
+        //FIFO_write_trample(&AdcFIFO, &ADCVoltageValue8, 1);
 
-        /* DISABLE FOR TEST
+        /* DISABLE FOR TEST */
         bit = ARA_ADC_Threashold(ADCVoltageValue);
         if (bit == 1)
         {
@@ -174,13 +174,16 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
             counter = 0;
             bitBuffer = 0x00;
         }
-        */
+    }
 
+/*
         HAL_UART_Transmit(&huart2, (uint8_t*)val, strlen(val), 10);
         HAL_UART_Transmit(&huart2, (uint8_t*)&";", 1, 10);
     }
 
     HAL_UART_Transmit(&huart2, (uint8_t*)&"\r\n", 4, 10);
+*/
+
 }
 
 /**
